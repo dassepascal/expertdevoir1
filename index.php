@@ -24,7 +24,7 @@ else{
         if(empty($url[1])){
           $ecoleController->afficherEcoles();
         }else if($url[1] === "h"){
-         echo $url[2];
+        $ecoleController->afficherEcole();
         }else if($url[1] === "a"){
           echo "ajout d'une ecole";
         }
