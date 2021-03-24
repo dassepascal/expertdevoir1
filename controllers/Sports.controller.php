@@ -1,6 +1,6 @@
 <?php
-require('SportManager.class.php');
-require('Sport.class.php');
+require('models/SportManager.class.php');
+require('models/Sport.class.php');
 class SportsController{
  private $sportManager;
 

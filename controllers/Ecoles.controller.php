@@ -1,5 +1,5 @@
 <?php
-require_once('EcoleManager.class.php');
+require_once('models/EcoleManager.class.php');
 
 class EcolesController{
  private $ecoleManager;

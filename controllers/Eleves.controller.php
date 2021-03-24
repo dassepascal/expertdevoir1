@@ -1,6 +1,6 @@
 <?php
-require_once('EleveManager.class.php');
-require_once('Eleve.class.php');
+require_once('models/EleveManager.class.php');
+require_once('models/Eleve.class.php');
 class ElevesController{
  private $eleveManager;
 

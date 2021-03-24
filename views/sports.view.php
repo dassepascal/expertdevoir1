@@ -1,16 +1,7 @@
 <?php
-require_once('Sport.class.php');
-
-$sport1 = new Sport(1,"boxe");
-$sport2 = new Sport(2,"judo");
-$sport3 = new Sport(3,"football");
-//$ecoles = [$ecole1,$ecole2,$ecole3];
-require_once('SportManager.class.php');
+require_once('models/Sport.class.php');
+require_once('models/SportManager.class.php');
 $sportManager = new SportManager;
-$sportManager->ajoutSport($sport1);
-$sportManager->ajoutSport($sport2);
-$sportManager->ajoutSport($sport3);
-
 $sportManager->chargementSports();
 ob_start();
 
