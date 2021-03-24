@@ -14,5 +14,10 @@ class ElevesController{
    $eleves =$this->eleveManager->getEleves();
    require('views/eleves.view.php');
  }
+ public function afficherEleve($id_eleve){
+   //echo "l'id est :".$id_eleve;
+$eleve =$this->eleveManager->getEleveById($id_eleve);
+require "views/afficherEleve.view.php";
 
+}
 }

@@ -23,4 +23,12 @@ class EleveManager extends Model{
       $this->ajoutEleves($student);
     }
   }
+  public function getEleveById($id_eleve){
+    for($i=0;count($this->eleves);$i++){
+      if($this->eleves[$i]->getId_eleve() === $id_eleve){
+        return $this->eleves[$i];
+      }
+
+    }
+  }
 }
