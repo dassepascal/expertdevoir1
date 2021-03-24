@@ -28,4 +28,12 @@ class EcoleManager extends Model
       $this->ajoutEcole($school);
     }
   }
+  public function getEcoleById($id_ecole){
+    for($i = 0; count($this->ecoles);$i++){
+      if($this ->ecoles[$i]->getId_ecole($id_ecole)=== $id_ecole){
+        return $this->ecoles[$i];
+      }
+    }
+
+  }
 }
