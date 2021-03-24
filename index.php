@@ -1,12 +1,19 @@
 <?php
-ob_start();
-?>
 
-Page d'accueil
+if(empty($_GET['page'])){
+  require_once('views/accueil.view.php');
 
-<?php
-$title = "accueil";
-$titre = "Accueil";
-$content = ob_get_clean();
-require_once('template.php');
-?>
+}else{
+  switch ($_GET['page']) {
+    case 'accueil':
+      require "views/accueil.view.php";
+      break;
+
+    default:
+      # code...
+      break;
+  }
+}
+
+
+
