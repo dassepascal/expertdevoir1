@@ -15,7 +15,9 @@ ob_start();
 
   for($i=0 ;$i < count($ecoles);$i++):?>
 <tr>
-<td><?= $ecoles[$i]->getNomEcole()?></td>
+<td class="align-middle"><a href="<?= URL ?>ecoles/h/<?= $ecoles[$i]->getId_ecole()?>"><?= $ecoles[$i]->getNomEcole()?></a></td>
+
+
 <td class="align-middle"><a href="#" class="btn btn-warning">Modifier</a></td>
       <td class="align-middle"><a href="#" class="btn btn-danger">Supprimer</a></td>
     </tr>

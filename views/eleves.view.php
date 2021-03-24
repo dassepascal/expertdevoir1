@@ -19,7 +19,7 @@ ob_start();
 
   for($i=0 ;$i < count($eleves);$i++):?>
 <tr>
-<td><?= $eleveManager->getEleves()[$i]->getNomEleve()?></td>
+<td class="align-middle"><?= $eleves[$i]->getNomEleve()?></a></td>
 <td class="align-middle"><a href="#" class="btn btn-warning">Modifier</a></td>
       <td class="align-middle"><a href="#" class="btn btn-danger">Supprimer</a></td>
     </tr>

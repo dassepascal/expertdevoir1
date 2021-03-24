@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="<?= URL ?>css/style.css" type="text/css" media="screen" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>serie</title>
 </head>
@@ -17,11 +17,11 @@
   <div class="menu">
     <nav>
       <ul>
-        <li><a href="accueil">Accueil</a></li>
-        
-        <li><a href="ecoles">Ecole</a></li>
-        <li><a href="eleves">Eleve</a></li>
-        <li><a href="sports">Sport</a></li>
+        <li><a href="<?= URL ?>accueil">Accueil</a></li>
+
+        <li><a href="<?= URL ?>ecoles">Ecole</a></li>
+        <li><a href="<?= URL ?>eleves">Eleve</a></li>
+        <li><a href="<?= URL ?>sports">Sport</a></li>
 
       </ul>
     </nav>
