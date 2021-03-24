@@ -24,7 +24,7 @@ else{
         if(empty($url[1])){
           $ecoleController->afficherEcoles();
         }else if($url[1] === "h"){
-          echo "affichage d'une ecole";
+         echo $url[2];
         }else if($url[1] === "a"){
           echo "ajout d'une ecole";
         }
@@ -67,7 +67,7 @@ else{
             }else if($url[1] === "s"){
               echo "supprimer un sport";
              }
-           
+
             break;
     default:
     throw new  Exception("La page n'existe pas");
