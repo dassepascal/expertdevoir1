@@ -16,7 +16,7 @@ class EcolesController{
  }
  public function afficherEcole($id_ecole){
   $ecole = $this->ecoleManager->getEcoleById($id_ecole);
-   echo $ecole->getNomEcole();
+   require "views/afficherEcole.view.php";
  }
 
 }
