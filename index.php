@@ -56,18 +56,18 @@ else{
 
           break;
           case 'sports':
-            // if(empty($url[1])){
-            //   $sportController->afficherSports();
-            //  }else if ($url[1] === "k"){
-            //    echo "afficher un sport";
-            // }else if ($url[1] === "a"){
-            //   echo "ajouter un sport";
-            // }else if ($url[1] === "m"){
-            //   echo "modifier un sport";
-            // }else if($url[1] === "s"){
-            //   echo "supprimer un sport";
-             //}
-            require "views/sports.view.php";
+            if(empty($url[1])){
+              $sportController->afficherSports();
+             }else if ($url[1] === "k"){
+               echo "afficher un sport";
+            }else if ($url[1] === "a"){
+              echo "ajouter un sport";
+            }else if ($url[1] === "m"){
+              echo "modifier un sport";
+            }else if($url[1] === "s"){
+              echo "supprimer un sport";
+             }
+           
             break;
     default:
     throw new  Exception("La page n'existe pas");
