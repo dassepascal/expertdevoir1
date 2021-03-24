@@ -12,7 +12,7 @@ ob_start();
     <th colspan="2">Action</th>
   </tr>
   <?php
-$ecoles = $ecolemanager->getEcoles();
+
   for($i=0 ;$i < count($ecoles);$i++):?>
 <tr>
 <td><?= $ecoles[$i]->getNomEcole()?></td>

@@ -17,10 +17,10 @@
   <div class="menu">
     <nav>
       <ul>
-        <li><a href="index.php">Accueil</a></li>
-        <li><a href="ecoles.php">Ecole</a></li>
-        <li><a href="eleves.php">Eleve</a></li>
-        <li><a href="sports.php">Sport</a></li>
+        <li><a href="accueil">Accueil</a></li>
+        <li><a href="ecoles">Ecole</a></li>
+        <li><a href="eleves">Eleve</a></li>
+        <li><a href="sports">Sport</a></li>
 
       </ul>
     </nav>

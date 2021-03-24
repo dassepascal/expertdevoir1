@@ -1,6 +1,6 @@
 <?php
 require_once('Model.class.php');
-
+require_once('Ecole.class.php');
 class EcoleManager extends Model
 {
   private $ecoles;

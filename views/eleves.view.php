@@ -1,6 +1,7 @@
 <?php
 require_once('Eleve.class.php');
 require_once('EleveManager.class.php');
+require_once('controllers/Eleves.controller.php');
 $eleveManager = new EleveManager;
 $eleveManager->chargementEleves();
 
@@ -15,7 +16,7 @@ ob_start();
     <th colspan="2">Action</th>
   </tr>
   <?php
-  $eleves = $eleveManager->getEleves();
+
   for($i=0 ;$i < count($eleves);$i++):?>
 <tr>
 <td><?= $eleveManager->getEleves()[$i]->getNomEleve()?></td>
