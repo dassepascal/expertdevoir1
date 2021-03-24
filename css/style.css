@@ -1,0 +1,119 @@
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal; }
+
+ul {
+  list-style: none; }
+
+button, input, select {
+  margin: 0; }
+
+html {
+  box-sizing: border-box; }
+
+*, *::before, *::after {
+  box-sizing: inherit; }
+
+img, video {
+  height: auto;
+  max-width: 100%; }
+
+iframe {
+  border: 0; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+td, th {
+  padding: 0; }
+
+body {
+  font-family: 'Cabin Sketch', cursive; }
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  background-color: #283645;
+  overflow: hidden; }
+  .menu ul li {
+    float: left; }
+    .menu ul li a {
+      font-size: 1.2em;
+      cursor: pointer;
+      color: white;
+      padding: 20px;
+      text-decoration: none;
+      display: block; }
+      .menu ul li a:hover {
+        background-color: #17a2b8; }
+
+header {
+  width: 1000px;
+  background-color: #17a2b8;
+  border-radius: 25px;
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+  margin: 8px auto; }
+  header h1 {
+    color: #fff;
+    font-size: 2.5em;
+    font-weight: 500; }
+
+.container {
+  margin: 10 auto;
+  padding: 20px; }
+
+.align-middle {
+  vertical-align: top; }
+
+.table {
+  width: 100%;
+  margin: 20px auto; }
+  .table .table-dark {
+    background-color: #283645;
+    color: #fff;
+    padding: 10px;
+    margin: 10px; }
+
+table td {
+  padding: 0.75rem;
+  border-top: 2px solid #333; }
+  table td a {
+    text-decoration: none;
+    color: #0c0c0c; }
+
+table th {
+  font-size: 1.2em;
+  padding: 12px; }
+
+.btn {
+  padding: 5px;
+  border-radius: 25px; }
+
+.btn-warning {
+  color: #fff;
+  background-color: orange; }
+
+.btn-danger {
+  background-color: red;
+  color: #fff; }
+
+.btn-success {
+  background-color: green;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  display: block; }
+
+.align-middle {
+  text-align: center; }
+
+/*# sourceMappingURL=style.css.map */
