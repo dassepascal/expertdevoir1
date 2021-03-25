@@ -38,20 +38,43 @@ class EcoleManager extends Model
   }
   public function ajoutEcoleBd($nomEcole)
   {
-    $req = "
-  insert into ecole (nomEcole) values (:nomEcole)";
-    $stmt = $this->getBdd()->prepare($req);
-    $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
-    $resultat = $stmt->execute();
+    if(!isset($_POST['nomEcole']) || empty($_POST['nomEcole'])){
+      throw new Exception(" Vous devez entrer un nom d'école ");
 
-    $stmt->closeCursor();
+    }else{
 
-    if ($resultat > 0) {
-      $ecole = new Ecole($this->getBdd()->lastInsertId(), $nomEcole);
+      $req = "
+      select count(nomEcole) from ecole where (nomEcole = :nomEcole)";
+      $stmt = $this->getBdd()->prepare($req);
+      $stmt->bindValue(":nomEcole",$nomEcole,PDO::PARAM_STR);
+      $resultat = $stmt->execute();
+      $results = $stmt->fetchAll();
+      foreach($results as $result){
+        if($result[0] >0){
+          throw new Exception(" l'école  existe deja");
+        }else{
+          $req = "
+          insert into ecole (nomEcole) values (:nomEcole)";
+            $stmt = $this->getBdd()->prepare($req);
+            $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
+            $resultat = $stmt->execute();
 
-      $this->ajoutEcole($ecole);
+            $stmt->closeCursor();
+
+            if ($resultat > 0) {
+              $ecole = new Ecole($this->getBdd()->lastInsertId(), $nomEcole);
+
+              $this->ajoutEcole($ecole);
+            }
+        }
+
+      }
+
     }
+
+
   }
+
   public function suppressionEcoleBd($id_ecole)
   {
 
@@ -63,27 +86,25 @@ class EcoleManager extends Model
     $resultat = $stmt->execute();
     $stmt->closeCursor();
 
-    if($resultat >0){
-      $ecole =$this->getEcoleById($id_ecole);
+    if ($resultat > 0) {
+      $ecole = $this->getEcoleById($id_ecole);
       unset($ecole);
     }
-
   }
-  public function modificationEcoleBd($id_ecole,$nomEcole){
-    $req ="
+  public function modificationEcoleBd($id_ecole, $nomEcole)
+  {
+    $req = "
     update ecole
     set nomEcole = :nomEcole
     where id_ecole = :id_ecole";
-    $stmt=$this->getBdd()->prepare($req);
-    $stmt->bindValue(":id_ecole",$id_ecole,PDO::PARAM_INT);
-    $stmt->bindValue(":nomEcole",$nomEcole,PDO::PARAM_STR);
+    $stmt = $this->getBdd()->prepare($req);
+    $stmt->bindValue(":id_ecole", $id_ecole, PDO::PARAM_INT);
+    $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
     $resultat = $stmt->execute();
     $stmt->closeCursor();
 
-    if($resultat >0){
+    if ($resultat > 0) {
       $this->getEcoleById($id_ecole)->setNomEcole($nomEcole);
     }
-
-
   }
 }

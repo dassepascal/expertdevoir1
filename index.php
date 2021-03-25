@@ -33,7 +33,6 @@ try {
         } else if ($url[1] === "s") {
           $ecoleController->suppressionEcole($url[2]);
         } else if ($url[1] === "av") {
-          echo "validation ajout";
           $ecoleController->ajoutEcoleValidation();
         } else {
           throw new  Exception("La page n'existe pas");
@@ -45,7 +44,9 @@ try {
         } else if ($url[1] === "e") {
           $eleveController->afficherEleve($url[2]);
         } else if ($url[1] === "a") {
-          echo $url[2];
+          $eleveController->ajoutEleve();
+        } else if ($url[1] === "av") {
+          $eleveController->ajoutEleveValidation();
         } else if ($url[1] === "m") {
           echo "modifier un eleve";
         } else if ($url[1] === "s") {

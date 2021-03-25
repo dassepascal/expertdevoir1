@@ -20,4 +20,11 @@ $eleve =$this->eleveManager->getEleveById($id_eleve);
 require "views/afficherEleve.view.php";
 
 }
+public function ajoutEleve(){
+  require "views/ajoutEleve.view.php";
+}
+public function ajoutEleveValidation(){
+  $this->eleveManager->ajoutEleveBd($_POST['nomEleve'],$_POST['id_ecole']);
+  header('Location: '. URL . "eleves");
+}
 }

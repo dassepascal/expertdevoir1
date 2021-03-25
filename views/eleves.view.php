@@ -28,7 +28,7 @@ ob_start();
 <?php endfor ?>
 </table>
 
-<a href="#" class="btn btn-success">Ajouter</a>
+<a href="<?= URL ?>eleves/a/" class="btn btn-success">Ajouter</a>
 
 <?php
 $titre = "eleve";
