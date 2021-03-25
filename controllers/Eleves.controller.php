@@ -27,4 +27,9 @@ public function ajoutEleveValidation(){
   $this->eleveManager->ajoutEleveBd($_POST['nomEleve'],$_POST['id_ecole']);
   header('Location: '. URL . "eleves");
 }
+public function suppressionEleve($id_eleve){
+  $this->eleveManager->suppressionEleveBd($id_eleve);
+//echo 'lid est:'.$id_eleve;
+  header('Location: '. URL . "eleves");
+}
 }

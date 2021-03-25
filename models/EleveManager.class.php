@@ -38,12 +38,24 @@ class EleveManager extends Model{
     $stmt->bindValue(":nomEleve",$nomEleve,PDO::PARAM_STR);
     $stmt->bindValue(":id_ecole",$id_ecole,PDO::PARAM_INT);
     $resultat = $stmt->execute();
-   
+
     $stmt->closeCursor();
 
     if($resultat > 0){
       $eleve = new Eleve ($this->getBdd()->lastinsertId(), $nomEleve,$id_ecole);
       $this->ajoutEleve($eleve);
+    }
+  }
+  public function suppressionEleveBd($id_eleve){
+    $req = "Delete from eleve  where id_eleve = :idEleve";
+    $stmt = $this->getbdd()->prepare($req);
+    $stmt->bindValue(":idEleve", $id_eleve, PDO::PARAM_INT);
+    $resultat = $stmt->execute();
+    $stmt->closeCursor();
+
+    if ($resultat > 0) {
+      $eleve = $this->getEleveById($id_eleve);
+      unset($eleve);
     }
   }
 }

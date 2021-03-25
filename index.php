@@ -50,7 +50,8 @@ try {
         } else if ($url[1] === "m") {
           echo "modifier un eleve";
         } else if ($url[1] === "s") {
-          echo "suppression eleve";
+         // echo 'sup eleve';
+          $eleveController->suppressionEleve($url[2]);
         } else {
           throw new  Exception("La page n'existe pas");
         }
