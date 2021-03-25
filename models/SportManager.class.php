@@ -37,10 +37,32 @@ if($this->sports[$i]->getId_sport($id_sport) === $id_sport){
     }else{
       // le sport existe-t- il?
       $req = "
-      select count(nomSport) from sport where (nomsport = :nomsport)";
+      select count(nomSport) from sport where (nomSport = :nomSport)";
       $stmt = $this->getBdd()->prepare($req);
       $stmt->bindValue(":nomSport",$nomSport,PDO::PARAM_STR);
       $resultat = $stmt->execute();
+      $results = $stmt->fetchAll();
+      foreach($results as $result){
+        if($result[0] >0){
+          throw new Exception(" le sport existe deja");
+        }else{
+          $req = "
+          insert into sport (nomSport) values (:nomSport)";
+            $stmt = $this->getBdd()->prepare($req);
+            $stmt->bindValue(":nomSport", $nomSport, PDO::PARAM_STR);
+            $resultat = $stmt->execute();
+
+            $stmt->closeCursor();
+
+            if ($resultat > 0) {
+              $sport = new Ecole($this->getBdd()->lastInsertId(), $nomSport);
+
+              $this->ajoutSport($sport);
+            }
+        }
+
+      }
+
 
     }
 
