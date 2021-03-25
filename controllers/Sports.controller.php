@@ -27,5 +27,9 @@ class SportsController{
    $this->sportManager->ajoutSportBd($_POST['nomSport']);
    header('Location: '. URL . "sports");
  }
+ public function suppressionSport($id_sport){
+   $this->sportManager->suppressionSportBd($id_sport);
+   header('Location: '. URL . "sports");
+ }
 
 }

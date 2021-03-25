@@ -77,10 +77,7 @@ class EcoleManager extends Model
 
   public function suppressionEcoleBd($id_ecole)
   {
-
-    $req = "
-    Delete from ecole  where id_ecole = :idEcole
-    ";
+    $req = "Delete from ecole  where id_ecole = :idEcole";
     $stmt = $this->getbdd()->prepare($req);
     $stmt->bindValue(":idEcole", $id_ecole, PDO::PARAM_INT);
     $resultat = $stmt->execute();

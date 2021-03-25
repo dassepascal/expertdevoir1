@@ -69,7 +69,7 @@ try {
         } else if ($url[1] === "m") {
           echo "modifier un sport";
         } else if ($url[1] === "s") {
-          echo "supprimer un sport";
+          $sportController->suppressionSport($url[2]);
         }
 
         break;

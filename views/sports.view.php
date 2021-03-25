@@ -18,7 +18,10 @@ ob_start();
 <tr>
 <td class="alig-middle"><a href="<?= URL ?>sports/k/<?= $sports[$i]->getId_sport();?>"><?= $sportManager->getSports()[$i]->getNomSport()?></a></td>
 <td class="align-middle"><a href="#" class="btn btn-warning">Modifier</a></td>
-      <td class="align-middle"><a href="#" class="btn btn-danger">Supprimer</a></td>
+      <td class="align-middle">
+      <form method="post" action="<?= URL ?>sports/s/<?= $sports[$i]->getId_sport(); ?>" onSubmit="return confirm ('voulez vous vraiment supprimer ce sport');">
+          <button class="btn btn-danger" type="submit">Supprimer</button>
+        </form>
     </tr>
 </tr>
 

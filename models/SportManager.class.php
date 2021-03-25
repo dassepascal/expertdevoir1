@@ -67,6 +67,19 @@ if($this->sports[$i]->getId_sport($id_sport) === $id_sport){
     }
 
   }
+  public function suppressionSportbd($id_sport){
+    $req=" delete from sport where id_sport = :idSport";
+    $stmt = $this->getBdd()->prepare($req);
+    $stmt->bindValue(":idSport", $id_sport,PDO::PARAM_INT);
+
+    $resultat = $stmt->execute();
+    $stmt->closeCursor();
+
+    if ($resultat > 0) {
+      $sport = $this->getSportById($id_sport);
+      unset($sport);
+    }
+  }
 
 
 }
