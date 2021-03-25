@@ -16,7 +16,7 @@ ob_start();
   $sports = $sportManager->getSports();
   for($i=0 ;$i < count($sports);$i++):?>
 <tr>
-<td><?= $sportManager->getSports()[$i]->getNomSport()?></td>
+<td class="alig-middle"><a href="<?= URL ?>sports/k/<?= $sports[$i]->getId_sport();?>"><?= $sportManager->getSports()[$i]->getNomSport()?></a></td>
 <td class="align-middle"><a href="#" class="btn btn-warning">Modifier</a></td>
       <td class="align-middle"><a href="#" class="btn btn-danger">Supprimer</a></td>
     </tr>

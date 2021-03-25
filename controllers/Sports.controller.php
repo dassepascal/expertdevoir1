@@ -14,5 +14,10 @@ class SportsController{
    $ecoles =$this->sportManager->getsports();
    require('views/sports.view.php');
  }
+ public function afficherSport($id_sport){
+   $sport = $this->sportManager->getSportById($id_sport);
+   require "views/afficherSport.view.php";
+
+ }
 
 }

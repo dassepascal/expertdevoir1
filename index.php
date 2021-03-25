@@ -59,7 +59,7 @@ try {
         if (empty($url[1])) {
           $sportController->afficherSports();
         } else if ($url[1] === "k") {
-          echo "afficher un sport";
+          $sportController->afficherSport($url[2]);
         } else if ($url[1] === "a") {
           echo "ajouter un sport";
         } else if ($url[1] === "m") {

@@ -23,6 +23,13 @@ class SportManager extends Model{
      $this->ajoutSport($s);
    }
   }
+  public function getSportById($id_sport){
+    for($i=0;count($this->sports);$i++){
+if($this->sports[$i]->getId_sport($id_sport) === $id_sport){
+  return $this->sports[$i];
+}
+    }
+  }
 
 
 }

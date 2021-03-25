@@ -6,7 +6,7 @@ ob_start();
 
 <?php
 
-$titre = $eleve->getNomEleve();
+$titre = $sport->getNomSport();
 $content = ob_get_clean();
 require_once('template.php');
 ?>
