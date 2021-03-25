@@ -45,7 +45,9 @@ try {
         } else if ($url[1] === "e") {
           $eleveController->afficherEleve($url[2]);
         } else if ($url[1] === "a") {
-          echo $url[2];
+          $eleveController->ajoutEleve();
+        }else if($url[1] === "av"){
+          $eleveController->ajoutEleveValidation();
         } else if ($url[1] === "m") {
           echo "modifier un eleve";
         } else if ($url[1] === "s") {

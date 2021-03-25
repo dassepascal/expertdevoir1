@@ -4,7 +4,7 @@ require_once('Model.class.php');
 class EleveManager extends Model{
   private $eleves;
 
-  public function ajoutEleves($eleve){
+  public function ajoutEleve($eleve){
     $this->eleves[]= $eleve;
   }
 
@@ -20,7 +20,7 @@ class EleveManager extends Model{
 
     foreach($mesEleves as $eleve){
       $student = new Eleve ($eleve['id_eleve'],$eleve['nomEleve']);
-      $this->ajoutEleves($student);
+      $this->ajoutEleve($student);
     }
   }
   public function getEleveById($id_eleve){
@@ -29,6 +29,21 @@ class EleveManager extends Model{
         return $this->eleves[$i];
       }
 
+    }
+  }
+  public function ajoutEleveBd($nomEleve,$id_ecole){
+    $req = "
+    insert into eleve (nomEleve,id_ecole) values(:nomEleve,:id_ecole)";
+    $stmt = $this->getBdd()->prepare($req);
+    $stmt->bindValue(":nomEleve",$nomEleve,PDO::PARAM_STR);
+    $stmt->bindValue(":id_ecole",$id_ecole,PDO::PARAM_INT);
+    $resultat = $stmt->execute();
+   
+    $stmt->closeCursor();
+
+    if($resultat > 0){
+      $eleve = new Eleve ($this->getBdd()->lastinsertId(), $nomEleve,$id_ecole);
+      $this->ajoutEleve($eleve);
     }
   }
 }
