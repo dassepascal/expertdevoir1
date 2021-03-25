@@ -38,20 +38,63 @@ class EcoleManager extends Model
   }
   public function ajoutEcoleBd($nomEcole)
   {
-    $req = "
-  insert into ecole (nomEcole) values (:nomEcole)";
-    $stmt = $this->getBdd()->prepare($req);
-    $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
-    $resultat = $stmt->execute();
 
-    $stmt->closeCursor();
+        //ecole existe-t-elle dans la base?
+        //effectuer une requete avec count()
+        if (isset($_POST['submit_form']))
+         {
+          $nomEcole = $_POST['nomEcole']; //? ecole A
+          var_dump($nomEcole); //? ecole A
 
-    if ($resultat > 0) {
-      $ecole = new Ecole($this->getBdd()->lastInsertId(), $nomEcole);
+        }
+        if (empty($nomEcole)) {
+          var_dump("message");
 
-      $this->ajoutEcole($ecole);
-    }
+        }
+        else
+        {
+          // l 'ecole est elle dans la base?
+
+                $req = "
+               select count(nomEcole) from ecole where (nomEcole = :nomEcole)";
+               $stmt = $this->getBdd()->prepare($req);
+               $stmt->bindValue(":nomEcole",$nomEcole,PDO::PARAM_STR);
+               $resultat = $stmt->execute();
+              $result = $stmt->fetchAll();
+              var_dump($result);
+
+              if ($result[0] >0)
+               {
+                 var_dump($result[0]);
+
+                 die();
+
+                  }
+                  else if ($result[0] == 0){
+                    var_dump("creer");
+                     die();
+                  }
+
+                     //requete insert into avec un if gestion message
+                  //  $req = "
+                  // insert into ecole (nomEcole) values (:nomEcole)";
+                  //   $stmt = $this->getBdd()->prepare($req);
+                  //   $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
+                  //   $resultat = $stmt->execute();
+
+                  //   $stmt->closeCursor();
+
+                  //   if ($resultat > 0) {
+                  //     $ecole = new Ecole($this->getBdd()->lastInsertId(), $nomEcole);
+
+                  //     $this->ajoutEcole($ecole);
+                  //   }
+                }
+
+
+
   }
+
   public function suppressionEcoleBd($id_ecole)
   {
 
@@ -63,27 +106,25 @@ class EcoleManager extends Model
     $resultat = $stmt->execute();
     $stmt->closeCursor();
 
-    if($resultat >0){
-      $ecole =$this->getEcoleById($id_ecole);
+    if ($resultat > 0) {
+      $ecole = $this->getEcoleById($id_ecole);
       unset($ecole);
     }
-
   }
-  public function modificationEcoleBd($id_ecole,$nomEcole){
-    $req ="
+  public function modificationEcoleBd($id_ecole, $nomEcole)
+  {
+    $req = "
     update ecole
     set nomEcole = :nomEcole
     where id_ecole = :id_ecole";
-    $stmt=$this->getBdd()->prepare($req);
-    $stmt->bindValue(":id_ecole",$id_ecole,PDO::PARAM_INT);
-    $stmt->bindValue(":nomEcole",$nomEcole,PDO::PARAM_STR);
+    $stmt = $this->getBdd()->prepare($req);
+    $stmt->bindValue(":id_ecole", $id_ecole, PDO::PARAM_INT);
+    $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
     $resultat = $stmt->execute();
     $stmt->closeCursor();
 
-    if($resultat >0){
+    if ($resultat > 0) {
       $this->getEcoleById($id_ecole)->setNomEcole($nomEcole);
     }
-
-
   }
 }

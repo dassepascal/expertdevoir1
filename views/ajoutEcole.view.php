@@ -7,7 +7,7 @@ ob_start();
         <input type="text" class="form" id="nomEcole" name="nomEcole">
     </div>
 
-    <button type="submit" class="btn btn-success">Valider</button>
+    <button type="submit" name="submit_form"    class="btn btn-success">Valider</button>
 </form>
 
 <?php
