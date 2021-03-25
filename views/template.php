@@ -10,7 +10,7 @@
 
   <link rel="stylesheet" href="<?= URL ?>css/style.css" type="text/css" media="screen" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>serie</title>
+  <title>Devoir1</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
       <ul>
         <li><a href="<?= URL ?>accueil">Accueil</a></li>
 
-        <li><a href="<?= URL ?>ecoles">Ecole</a></li>
+        <li><a href="<?= URL ?>ecoles" >Ecole</a></li>
         <li><a href="<?= URL ?>eleves">Eleve</a></li>
         <li><a href="<?= URL ?>sports">Sport</a></li>
 

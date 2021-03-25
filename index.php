@@ -25,11 +25,16 @@ try {
         } else if ($url[1] === "h") {
           $ecoleController->afficherEcole($url[2]);
         } else if ($url[1] === "a") {
-          echo "ajouter ecole";
+          $ecoleController->ajoutEcole();
         } else if ($url[1] === "m") {
-          echo "modifier une ecole";
+          $ecoleController->modificationEcole($url[2]);
+        } else if ($url[1] === "mv") {
+          $ecoleController->modificationEcoleValidation();
         } else if ($url[1] === "s") {
-          echo "supprimer une ecole";
+          $ecoleController->suppressionEcole($url[2]);
+        } else if ($url[1] === "av") {
+          echo "validation ajout";
+          $ecoleController->ajoutEcoleValidation();
         } else {
           throw new  Exception("La page n'existe pas");
         }
@@ -40,11 +45,11 @@ try {
         } else if ($url[1] === "e") {
           $eleveController->afficherEleve($url[2]);
         } else if ($url[1] === "a") {
-          echo "ajouter un eleve";
+          echo $url[2];
         } else if ($url[1] === "m") {
           echo "modifier un eleve";
         } else if ($url[1] === "s") {
-          echo "supprimer un eleve";
+          echo "suppression eleve";
         } else {
           throw new  Exception("La page n'existe pas");
         }
