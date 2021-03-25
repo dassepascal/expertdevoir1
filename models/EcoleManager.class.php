@@ -38,59 +38,39 @@ class EcoleManager extends Model
   }
   public function ajoutEcoleBd($nomEcole)
   {
+    if(!isset($_POST['nomEcole']) || empty($_POST['nomEcole'])){
+      throw new Exception(" Vous devez entrer un nom d'école ");
 
-        //ecole existe-t-elle dans la base?
-        //effectuer une requete avec count()
-        if (isset($_POST['submit_form']))
-         {
-          $nomEcole = $_POST['nomEcole']; //? ecole A
-          var_dump($nomEcole); //? ecole A
+    }else{
 
+      $req = "
+      select count(nomEcole) from ecole where (nomEcole = :nomEcole)";
+      $stmt = $this->getBdd()->prepare($req);
+      $stmt->bindValue(":nomEcole",$nomEcole,PDO::PARAM_STR);
+      $resultat = $stmt->execute();
+      $results = $stmt->fetchAll();
+      foreach($results as $result){
+        if($result[0] >0){
+          throw new Exception(" l'école  existe deja");
+        }else{
+          $req = "
+          insert into ecole (nomEcole) values (:nomEcole)";
+            $stmt = $this->getBdd()->prepare($req);
+            $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
+            $resultat = $stmt->execute();
+
+            $stmt->closeCursor();
+
+            if ($resultat > 0) {
+              $ecole = new Ecole($this->getBdd()->lastInsertId(), $nomEcole);
+
+              $this->ajoutEcole($ecole);
+            }
         }
-        if (empty($nomEcole)) {
-          var_dump("message");
 
-        }
-        else
-        {
-          // l 'ecole est elle dans la base?
+      }
 
-                $req = "
-               select count(nomEcole) from ecole where (nomEcole = :nomEcole)";
-               $stmt = $this->getBdd()->prepare($req);
-               $stmt->bindValue(":nomEcole",$nomEcole,PDO::PARAM_STR);
-               $resultat = $stmt->execute();
-              $result = $stmt->fetchAll();
-              var_dump($result);
-
-              if ($result[0] >0)
-               {
-                 var_dump($result[0]);
-
-                 die();
-
-                  }
-                  else if ($result[0] == 0){
-                    var_dump("creer");
-                     die();
-                  }
-
-                     //requete insert into avec un if gestion message
-                  //  $req = "
-                  // insert into ecole (nomEcole) values (:nomEcole)";
-                  //   $stmt = $this->getBdd()->prepare($req);
-                  //   $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
-                  //   $resultat = $stmt->execute();
-
-                  //   $stmt->closeCursor();
-
-                  //   if ($resultat > 0) {
-                  //     $ecole = new Ecole($this->getBdd()->lastInsertId(), $nomEcole);
-
-                  //     $this->ajoutEcole($ecole);
-                  //   }
-                }
-
+    }
 
 
   }
