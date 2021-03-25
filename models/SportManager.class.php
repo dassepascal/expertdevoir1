@@ -30,6 +30,21 @@ if($this->sports[$i]->getId_sport($id_sport) === $id_sport){
 }
     }
   }
+  public function ajoutSportBd($nomSport){
+    if(!isset($_POST['nomSport']) || empty($_POST['nomSport'])){
+      throw new Exception(" Vous devez entrer un nom de sport");
+
+    }else{
+      // le sport existe-t- il?
+      $req = "
+      select count(nomSport) from sport where (nomsport = :nomsport)";
+      $stmt = $this->getBdd()->prepare($req);
+      $stmt->bindValue(":nomSport",$nomSport,PDO::PARAM_STR);
+      $resultat = $stmt->execute();
+
+    }
+
+  }
 
 
 }

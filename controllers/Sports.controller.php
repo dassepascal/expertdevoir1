@@ -19,5 +19,13 @@ class SportsController{
    require "views/afficherSport.view.php";
 
  }
+ public function ajouterSport(){
+   require "views/ajouterSport.view.php";
+
+ }
+ public function ajouterSportValidation(){
+   $this->sportManager->ajoutSportBd($_POST['nomSport']);
+   header('Location: '. URL . "sports");
+ }
 
 }
