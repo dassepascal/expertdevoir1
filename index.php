@@ -67,7 +67,9 @@ try {
         else if($url[1] === "av"){
          $sportController->ajouterSportValidation();
         } else if ($url[1] === "m") {
-          echo "modifier un sport";
+          $sportController->modificationSport($url[2]);
+        }else if($url[1] === "mv"){
+          $sportController->modificationSportValidation();
         } else if ($url[1] === "s") {
           $sportController->suppressionSport($url[2]);
         }
