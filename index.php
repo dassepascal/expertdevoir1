@@ -4,9 +4,11 @@ define("URL", str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" :
 require_once('controllers/Ecoles.controller.php');
 require_once('controllers/Eleves.controller.php');
 require_once('controllers/Sports.controller.php');
+require_once('controllers/Pratiques.controller.php');
 $ecoleController = new EcolesController;
 $eleveController = new ElevesController;
 $sportController = new SportsController;
+$pratiqueController = new PratiqueController;
 try {
   if (empty($_GET['page'])) {
     require_once('views/accueil.view.php');
@@ -54,10 +56,8 @@ try {
         } else {
           throw new  Exception("La page n'existe pas");
         }
-
         break;
       case 'sports':
-
         if (empty($url[1])) {
           $sportController->afficherSports();
         } else if ($url[1] === "k") {
@@ -75,7 +75,7 @@ try {
         break;
         case 'pratiqueSports':
           if (empty($url[1])) {
-            echo "pratique sports";
+             $pratiqueController->afficherPratiques();
           }
           break;
       default:
