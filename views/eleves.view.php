@@ -21,7 +21,9 @@ ob_start();
 <tr>
 <td class="align-middle"><a href="<?= URL ?>eleves/e/<?=$eleves[$i]->getId_eleve()?>"><?= $eleves[$i]->getNomEleve()?></a></td>
 <td class="align-middle"><a href="#" class="btn btn-warning">Modifier</a></td>
-      <td class="align-middle"><a href="#" class="btn btn-danger">Supprimer</a></td>
+      <td class="align-middle"> <form method="post" action="<?= URL ?>eleves/s/<?= $eleves[$i]->getId_eleve(); ?>" onSubmit="return confirm ('voulez vous vraiment supprimer cette eleve');">
+          <button class="btn btn-danger" type="submit">Supprimer</button>
+        </form>
     </tr>
 </tr>
 
