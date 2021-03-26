@@ -1,6 +1,8 @@
 <?php
 require_once('models/EleveManager.class.php');
 require_once('models/Eleve.class.php');
+require_once('models/Ecole.class.php');
+require_once('models/EcoleManager.class.php');
 class ElevesController{
  private $eleveManager;
 
@@ -30,5 +32,9 @@ public function ajoutEleveValidation(){
 public function suppressionEleve($id_eleve){
   $eleve = $this->eleveManager->suppressionEleveBd($id_eleve);
   header('Location: '. URL . "eleves");
+}
+public function modificationEleve($id_eleve){
+  $eleve = $this->eleveManager->getEleveById($id_eleve);
+  require "views/modifierEleve.view.php";
 }
 }

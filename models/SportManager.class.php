@@ -81,11 +81,14 @@ if($this->sports[$i]->getId_sport($id_sport) === $id_sport){
     }
   }
   public function modificationSportBd($id_sport,$nomSport){
+    
     $req="update sport set nomSport = :nomSport where id_sport = :id_sport";
     $stmt = $this->getBdd()->prepare($req);
     $stmt->bindValue(":id_sport",$id_sport,PDO::PARAM_INT);
     $stmt->bindValue(":nomSport", $nomSport, PDO::PARAM_STR);
     $resultat = $stmt->execute();
+    var_dump($resultat);
+
     $stmt->closeCursor();
 
     if ($resultat > 0) {

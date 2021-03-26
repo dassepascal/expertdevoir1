@@ -33,10 +33,12 @@ class SportsController{
  }
  public function modificationSport($id_sport){
   $sport = $this->sportManager->getSportById($id_sport);
+
   require "views/modifierSport.view.php";
  }
  public function modificationSportValidation(){
    $this->sportManager->modificationSportBd($_POST['identifiant'],$_POST['nomSport']);
+
    header('Location: '. URL . "sports");
  }
 }
