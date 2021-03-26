@@ -22,6 +22,7 @@
         <li><a href="<?= URL ?>ecoles" >Ecole</a></li>
         <li><a href="<?= URL ?>eleves">Eleve</a></li>
         <li><a href="<?= URL ?>sports">Sport</a></li>
+        <li><a href="<?= URL ?>pratiqueSports">Sports Pratiqués</a></li>
 
       </ul>
     </nav>
