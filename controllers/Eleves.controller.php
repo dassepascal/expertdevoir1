@@ -28,8 +28,7 @@ public function ajoutEleveValidation(){
   header('Location: '. URL . "eleves");
 }
 public function suppressionEleve($id_eleve){
-  $this->eleveManager->suppressionEleveBd($id_eleve);
-//echo 'lid est:'.$id_eleve;
+  $eleve = $this->eleveManager->suppressionEleveBd($id_eleve);
   header('Location: '. URL . "eleves");
 }
 }

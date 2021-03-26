@@ -51,7 +51,7 @@ class EleveManager extends Model
       foreach ($results as $result) {
         if ($result[0] > 0) {
           throw new Exception(" 'eleve existe deja");
-         
+
         } else {
           $req = "insert into eleve (nomEleve,id_ecole) values(:nomEleve,:id_ecole)";
 

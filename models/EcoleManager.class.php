@@ -20,8 +20,6 @@ class EcoleManager extends Model
     $req->execute();
     $mesEcoles = $req->fetchall(PDO::FETCH_ASSOC);
     $req->closeCursor();
-    // echo '<pre>';
-    // print_r($ecoles);
     foreach ($mesEcoles as $ecole) { //?genere des objets de la class Ecole
 
       $school = new Ecole($ecole['id_ecole'], $ecole['nomEcole']);
@@ -38,41 +36,36 @@ class EcoleManager extends Model
   }
   public function ajoutEcoleBd($nomEcole)
   {
-    if(!isset($_POST['nomEcole']) || empty($_POST['nomEcole'])){
+    if (!isset($_POST['nomEcole']) || empty($_POST['nomEcole'])) {
       throw new Exception(" Vous devez entrer un nom d'école ");
-
-    }else{
+    } else {
 
       $req = "
       select count(nomEcole) from ecole where (nomEcole = :nomEcole)";
       $stmt = $this->getBdd()->prepare($req);
-      $stmt->bindValue(":nomEcole",$nomEcole,PDO::PARAM_STR);
+      $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
       $resultat = $stmt->execute();
       $results = $stmt->fetchAll();
-      foreach($results as $result){
-        if($result[0] >0){
+      foreach ($results as $result) {
+        if ($result[0] > 0) {
           throw new Exception(" l'école  existe deja");
-        }else{
+        } else {
           $req = "
           insert into ecole (nomEcole) values (:nomEcole)";
-            $stmt = $this->getBdd()->prepare($req);
-            $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
-            $resultat = $stmt->execute();
+          $stmt = $this->getBdd()->prepare($req);
+          $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
+          $resultat = $stmt->execute();
 
-            $stmt->closeCursor();
+          $stmt->closeCursor();
 
-            if ($resultat > 0) {
-              $ecole = new Ecole($this->getBdd()->lastInsertId(), $nomEcole);
+          if ($resultat > 0) {
+            $ecole = new Ecole($this->getBdd()->lastInsertId(), $nomEcole);
 
-              $this->ajoutEcole($ecole);
-            }
+            $this->ajoutEcole($ecole);
+          }
         }
-
       }
-
     }
-
-
   }
 
   public function suppressionEcoleBd($id_ecole)
