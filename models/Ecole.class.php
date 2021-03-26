@@ -4,14 +4,14 @@ class Ecole
   private $id_ecole;
   private $nomEcole;
 
-
+public static $ecoles;// tableau des ecoles
 
 
   public function __construct($id_ecole, $nomEcole)
   {
     $this->id_ecole = $id_ecole;
     $this->nomEcole = $nomEcole;
-    
+
   }
 
 

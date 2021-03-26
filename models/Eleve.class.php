@@ -4,7 +4,7 @@ class Eleve
   private $id_eleve;
   private $nomEleve;
 
-  public static $eleves;//tableau ecole
+  public static $eleves;//tableau eleves
 
 
   public function __construct($id_eleve, $nomEleve)

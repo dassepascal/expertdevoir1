@@ -50,7 +50,7 @@ try {
         } else if ($url[1] === "m") {
           echo "modifier un eleve";
         } else if ($url[1] === "s") {
-         // echo 'sup eleve';
+          // echo 'sup eleve';
           $eleveController->suppressionEleve($url[2]);
         } else {
           throw new  Exception("La page n'existe pas");
@@ -64,15 +64,21 @@ try {
           $sportController->afficherSport($url[2]);
         } else if ($url[1] === "a") {
           $sportController->ajouterSport();
-        }
-        else if($url[1] === "av"){
-         $sportController->ajouterSportValidation();
+        } else if ($url[1] === "av") {
+          $sportController->ajouterSportValidation();
         } else if ($url[1] === "m") {
           $sportController->modificationSport($url[2]);
-        }else if($url[1] === "mv"){
+        } else if ($url[1] === "mv") {
           $sportController->modificationSportValidation();
         } else if ($url[1] === "s") {
           $sportController->suppressionSport($url[2]);
+        }
+
+        break;
+
+      case 'tests':
+        if (empty($url[1])) {
+          require "views/test.view.php";
         }
 
         break;

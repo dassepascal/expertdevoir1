@@ -32,6 +32,9 @@ ob_start();
 
 <a href="<?= URL ?>eleves/a/" class="btn btn-success">Ajouter</a>
 
+
+
+
 <?php
 $titre = "eleve";
 $content = ob_get_clean();

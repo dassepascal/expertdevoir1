@@ -29,9 +29,11 @@ ob_start();
     </tr>
 
   <?php endfor ?>
-</table>
+  </table>
 
 <a href="<?= URL ?>ecoles/a/" class="btn btn-success">Ajouter</a>
+
+
 
 <?php
 $titre = "ecole";
