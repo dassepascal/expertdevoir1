@@ -70,4 +70,15 @@ class EleveManager extends Model
       }
     }
   }
+  public function suppressionEleveBd($id_eleve){
+    $req = "delete from eleve where id_eleve = :idEleve";
+    $stmt = $this->getBdd()->prepare($req);
+    $stmt -> bindValue(":idEleve",$id_eleve,PDO::PARAM_INT);
+    $resultat = $stmt->execute();
+    $stmt->closeCursor();
+    if($resultat > 0){
+      $eleve = $this->getEleveById($id_eleve);
+      unset($eleve);
+    }
+  }
 }
