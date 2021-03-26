@@ -53,10 +53,14 @@ try {
           echo "modifier un eleve";
         } else if ($url[1] === "s") {
 <<<<<<< HEAD
+<<<<<<< HEAD
           // echo 'sup eleve';
           $eleveController->suppressionEleve($url[2]);
 =======
          $eleveController->suppressionEleve($url[2]);
+>>>>>>> suppression
+=======
+          $eleveController->suppressionEleve($url[2]);
 >>>>>>> suppression
         } else {
           throw new  Exception("La page n'existe pas");
@@ -80,6 +84,7 @@ try {
         }
 
         break;
+<<<<<<< HEAD
 
      
         case 'pratiqueSports':
@@ -87,6 +92,13 @@ try {
              $pratiqueController->afficherPratiques();
           }
           break;
+=======
+      case 'pratiqueSports':
+        if (empty($url[1])) {
+          $pratiqueController->afficherPratiques();
+        }
+        break;
+>>>>>>> suppression
       default:
         throw new  Exception("La page n'existe pas");
         break;
