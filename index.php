@@ -50,13 +50,14 @@ try {
         } else if ($url[1] === "m") {
           echo "modifier un eleve";
         } else if ($url[1] === "s") {
-          echo "suppression eleve";
+         $eleveController->suppressionEleve($url[2]);
         } else {
           throw new  Exception("La page n'existe pas");
         }
 
         break;
       case 'sports':
+
         if (empty($url[1])) {
           $sportController->afficherSports();
         } else if ($url[1] === "k") {
@@ -71,8 +72,12 @@ try {
         } else if ($url[1] === "s") {
           echo "supprimer un sport";
         }
-
         break;
+        case 'pratiqueSports':
+          if (empty($url[1])) {
+            echo "pratique sports";
+          }
+          break;
       default:
         throw new  Exception("La page n'existe pas");
         break;
