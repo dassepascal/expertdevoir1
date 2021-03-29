@@ -23,7 +23,7 @@ class EleveManager extends Model
     $req->closeCursor();
 
     foreach ($mesEleves as $eleve) {
-      $student = new Eleve($eleve['id_eleve'], $eleve['nomEleve']);
+      $student = new Eleve($eleve['id_eleve'], $eleve['nomEleve'],$eleve['id_ecole']);
       $this->ajoutEleve($student);
     }
   }
@@ -88,16 +88,14 @@ class EleveManager extends Model
     require "views/modificationEleve.view.php";
 }
 public function modificationEleveBd($id_eleve,$nomEleve,$id_ecole){
-  var_dump($id_ecole);
-  die();
+  
   $req="update eleve set nomEleve=:nomEleve, id_ecole =:id_ecole where id_eleve=:id_eleve";
   $stmt = $this->getBdd()->prepare($req);
   $stmt->bindValue(":id_eleve",$id_eleve,PDO::PARAM_INT);
   $stmt ->bindValue(":nomEleve",$nomEleve,PDO::PARAM_STR);
   $stmt->bindValue(":id_ecole",$id_ecole,PDO::PARAM_STR);
   $resultat = $stmt->execute();
-  var_dump($resultat);
-  die();
+
   $stmt->closeCursor();
 
   if($resultat >0){
