@@ -26,7 +26,7 @@ public function ajoutEleve(){
   require "views/ajoutEleve.view.php";
 }
 public function ajoutEleveValidation(){
-  $this->eleveManager->ajoutEleveBd($_POST['nomEleve'],$_POST['id_ecole']);
+  $this->eleveManager->ajoutEleveBd($_POST['nomEleve'],$_POST['nomEcole']);
   header('Location: '. URL . "eleves");
 }
 public function suppressionEleve($id_eleve){

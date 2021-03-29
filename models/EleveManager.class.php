@@ -37,7 +37,7 @@ class EleveManager extends Model
   }
   public function ajoutEleveBd($nomEleve, $id_ecole)
   {
-    if (!isset($_POST['nomEleve']) || empty($_POST['nomEleve'])) {
+    if (!isset($_POST['nomEleve']) || empty($_POST['nomEleve']) || empty($_POST['nomEcole'])) {
 
       throw new Exception(" Vous devez entrer un eleve");
     } else {
