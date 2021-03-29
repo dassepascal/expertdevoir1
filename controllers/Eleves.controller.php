@@ -35,6 +35,12 @@ public function suppressionEleve($id_eleve){
 }
 public function modificationEleve($id_eleve){
   $eleve = $this->eleveManager->getEleveById($id_eleve);
-  require "views/modifierEleve.view.php";
+  require "views/modificationEleve.view.php";
 }
+public function modificationEleveValidation(){
+
+    $this->eleveManager->modificationEleveBd($_POST['identifiant'],$_POST['nomEleve'],$_POST['nomEcole']);
+    header('Location: '. URL . "eleves");
+  }
 }
+

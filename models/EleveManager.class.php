@@ -4,7 +4,7 @@ require_once('Model.class.php');
 class EleveManager extends Model
 {
   private $eleves;
-
+  //private $ecoles;
   public function ajoutEleve($eleve)
   {
     $this->eleves[] = $eleve;
@@ -83,4 +83,27 @@ class EleveManager extends Model
       unset($eleve);
     }
   }
+  public function modificationEleve($id_eleve){
+    $eleve = $this->eleveManager->getEleveById($id_eleve);
+    require "views/modificationEleve.view.php";
+}
+public function modificationEleveBd($id_eleve,$nomEleve,$id_ecole){
+  var_dump($id_ecole);
+  die();
+  $req="update eleve set nomEleve=:nomEleve, id_ecole =:id_ecole where id_eleve=:id_eleve";
+  $stmt = $this->getBdd()->prepare($req);
+  $stmt->bindValue(":id_eleve",$id_eleve,PDO::PARAM_INT);
+  $stmt ->bindValue(":nomEleve",$nomEleve,PDO::PARAM_STR);
+  $stmt->bindValue(":id_ecole",$id_ecole,PDO::PARAM_STR);
+  $resultat = $stmt->execute();
+  var_dump($resultat);
+  die();
+  $stmt->closeCursor();
+
+  if($resultat >0){
+    $this->getEleveById($id_eleve)->setNomEleve($nomEleve);
+    $this->getEleveById($id_eleve)->setId_ecole($id_ecole);
+
+  }
+}
 }

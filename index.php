@@ -51,6 +51,8 @@ try {
           $eleveController->ajoutEleveValidation();
         } else if ($url[1] === "m") {
           $eleveController->modificationEleve($url[2]);
+        }else if($url[1] === "mv"){
+          $eleveController->modificationEleveValidation();
         } else if ($url[1] === "s") {
           $eleveController->suppressionEleve($url[2]);
         } else {
