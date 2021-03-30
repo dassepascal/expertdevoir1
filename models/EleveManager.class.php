@@ -1,6 +1,11 @@
 <?php
 require_once('Model.class.php');
-
+require_once('Ecole.class.php');
+require_once('EcoleManager.class.php');
+//$nomEcole = new Ecole($id_ecole,$nomEcole);
+//$nomEcole->getNomEcole();
+$ecolemanager = new EcoleManager;
+$ecolemanager->chargementEcoles();
 class EleveManager extends Model
 {
   private $eleves;
@@ -27,6 +32,14 @@ class EleveManager extends Model
       $this->ajoutEleve($student);
     }
   }
+//   public function afficherNomEcoleBd($nomEcole){
+//     $req =" select nomEcole as nomEcole from eleve E inner join T on T.id_ecole = E.id_ecole";
+// $stmt = $this->getBdd()->prepare($req);
+// $stmt -> bindValue(":nomEcole",$nomEcole,PDO::PARAM_STR);
+// $resultat = $stmt->execute();
+// var_dump($resultat);
+// $results = $stmt->fetchAll();
+//   }
   public function getEleveById($id_eleve)
   {
     for ($i = 0; count($this->eleves); $i++) {
@@ -88,7 +101,7 @@ class EleveManager extends Model
     require "views/modificationEleve.view.php";
 }
 public function modificationEleveBd($id_eleve,$nomEleve,$id_ecole){
-  
+
   $req="update eleve set nomEleve=:nomEleve, id_ecole =:id_ecole where id_eleve=:id_eleve";
   $stmt = $this->getBdd()->prepare($req);
   $stmt->bindValue(":id_eleve",$id_eleve,PDO::PARAM_INT);

@@ -1,4 +1,5 @@
 <?php
+require_once('Ecole.class.php');
 class Eleve
 {
   private $id_eleve;
@@ -14,6 +15,7 @@ class Eleve
     $this->nomEleve = $nomEleve;
     $this->id_ecole = $id_ecole;
     self::$eleves[] = $this;
+
   }
 
 
@@ -43,5 +45,8 @@ class Eleve
   }
 
 
+  }
 
-}
+
+
+

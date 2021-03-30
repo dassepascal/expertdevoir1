@@ -7,10 +7,12 @@ class Ecole
 public static $ecoles;// tableau des ecoles
 
 
+
   public function __construct($id_ecole, $nomEcole)
   {
     $this->id_ecole = $id_ecole;
     $this->nomEcole = $nomEcole;
+    self::$ecoles[]=$this;
 
   }
 
@@ -24,7 +26,7 @@ public static $ecoles;// tableau des ecoles
     $this->id_ecole = $id_ecole;
   }
 
-  public function getnomEcole()
+  public function getNomEcole()
   {
     return $this->nomEcole;
   }
