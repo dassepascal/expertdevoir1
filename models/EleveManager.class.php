@@ -65,12 +65,10 @@ class EleveManager extends Model
 
   public function ajoutEleveBd($nom, $ecole_id)
   {
-    var_dump($nom);
-    var_dump($ecole_id);
+//! pb champ nomEcole;
     if (!isset($_POST['nomEleve']) || empty($_POST['nomEleve'])) {
-      var_dump($_POST['nomEleve']);
-      var_dump($_POST['nomEleve']);
-      var_dump($_POST['nomEcole']);
+
+
       throw new Exception(" Vous devez entrer un eleve");
     } else {
 
@@ -123,17 +121,20 @@ class EleveManager extends Model
   public function modificationEleveBd($id, $nom, $ecole_id)
   {
 
-    $req = "update eleve set nom=:nomEleve, ecole_id =:ecole_id where id=:id_eleve";
+    $req = "update eleve set nom=:nom, ecole_id =:ecole_id where id=:id";
+    
+
     $stmt = $this->getBdd()->prepare($req);
     $stmt->bindValue(":id", $id, PDO::PARAM_INT);
     $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
     $stmt->bindValue(":ecole_id", $ecole_id, PDO::PARAM_STR);
     $resultat = $stmt->execute();
 
+
     $stmt->closeCursor();
 
     if ($resultat > 0) {
-      $this->getEleveById($id)->setNomEleve($nom);
+      $this->getEleveById($id)->setNom($nom);
       $this->getEleveById($id)->setEcole_id($ecole_id);
     }
   }

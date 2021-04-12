@@ -83,7 +83,7 @@ class EcoleManager extends Model
       unset($ecole);
     }
   }
-  
+
   public function modificationEcoleBd($id, $nom)
   {
     $req = "
@@ -94,6 +94,7 @@ class EcoleManager extends Model
     $stmt->bindValue(":id", $id, PDO::PARAM_INT);
     $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
     $resultat = $stmt->execute();
+    var_dump($resultat);
     $stmt->closeCursor();
 
     if ($resultat > 0) {

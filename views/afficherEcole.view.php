@@ -4,7 +4,7 @@
 // require_once('views/ecoles.view.php');
  $ecolemanager = new EcoleManager;
  $monId = $ecolemanager->nbEleves();
- 
+
  //var_dump(intval($monId[0]));
 
 //  for ($i=0;count($monId);$i++ ){
@@ -19,7 +19,7 @@
 // $ecolemanager->chargementEcoles();
 // $ecolemanager->getEcoles();
 
-$id_ecole = $ecole->getId_ecole();
+$id_ecole = $ecole->getId();
 ob_start();
 ?>
 <table class="table">
@@ -47,8 +47,8 @@ ob_start();
 
 </table>
 <?php
-$title = $ecole->getNomEcole();
-$titre = $ecole->getNomEcole();
+$title = $ecole->getNom();
+$titre = $ecole->getNom();
 $content = ob_get_clean();
 require_once('template.php');
 ?>
