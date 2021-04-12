@@ -23,7 +23,7 @@ class EleveManager extends Model
 
   public function chargementEleves()
   {
-    $req = $this->getBdd()->prepare("SELECT * FROM eleve");
+    $req = $this->getBdd()->prepare("SELECT E.id_eleve, E.nomEleve, E.ecole_id , T.nomEcole FROM eleve E INNER JOIN ecole T ON T.id_ecole = E.ecole_id");
     $req->execute();
     $mesEleves = $req->fetchall(PDO::FETCH_ASSOC);
     $req->closeCursor();
@@ -31,20 +31,19 @@ class EleveManager extends Model
     foreach ($mesEleves as $eleve) {
       //var_dump($eleve);
       $student = new Eleve($eleve['id_eleve'], $eleve['nomEleve'], $eleve['ecole_id']);
+      $student->setNomEcole($eleve['nomEcole']);
       $this->ajoutEleve($student);
     }
   }
   public function afficherNomEcole()
   {
-    $req = $this->getBdd()->prepare(" SELECT E.id_eleve,E.nomEleve,E.ecole_id , T.nomEcole FROM eleve E INNER JOIN ecole T ON T.id_ecole = E.ecole_id");
+    $req = $this->getBdd()->prepare("SELECT E.id_eleve,E.nomEleve,E.ecole_id , T.nomEcole FROM eleve E INNER JOIN ecole T ON T.id_ecole = E.ecole_id");
     $req->execute();
     $mesNomEcoles = $req->fetchAll(PDO::FETCH_ASSOC);
     $req->closeCursor();
     // echo '<pre>';
     //print_r($mesNomEcoles);
-return $mesNomEcoles;
-    // var_dump($mesNomEcoles[0]['nomEleve']);
-    // var_dump($mesNomEcoles[0]['nomEcole']);
+    return $mesNomEcoles;
   }
 
 
@@ -84,7 +83,7 @@ return $mesNomEcoles;
         if ($result[0] > 0) {
           throw new Exception(" 'eleve existe deja");
         } else {
-          $req = "insert into eleve (nomEleve,id_ecole) values(:nomEleve,:id_ecole)";
+          $req = "insert into eleve (nomEleve,ecole_id) values(:nomEleve,:ecole_id)";
 
           $stmt = $this->getBdd()->prepare($req);
           $stmt->bindValue(":nomEleve", $nomEleve, PDO::PARAM_STR);

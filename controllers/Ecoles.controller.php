@@ -21,6 +21,8 @@ class EcolesController
   {
     $ecole = $this->ecoleManager->getEcoleById($id_ecole);
     var_dump($ecole);
+    //$studentsCount = count($this->ecoleManager->students($ecole->id()));
+
     require "views/afficherEcole.view.php";
   }
   public function ajoutEcole()

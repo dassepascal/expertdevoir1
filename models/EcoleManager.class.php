@@ -5,6 +5,8 @@ class EcoleManager extends Model
 {
   private $ecoles;
 
+  //public function students() // return array(Eleve $student)
+
   public function ajoutEcole($ecole)
   {
     $this->ecoles[] = $ecole;
@@ -96,5 +98,12 @@ class EcoleManager extends Model
     if ($resultat > 0) {
       $this->getEcoleById($id_ecole)->setNomEcole($nomEcole);
     }
+  }
+  public function nbEleves(){
+    $req = $this->getBdd()->prepare("SELECT T.id_ecole FROM ecole  T INNER JOIN eleve E ON  T.id_ecole = E.ecole_id ");
+    $req->execute();
+    $monId = $req->fetchAll(PDO::FETCH_ASSOC);
+    $req->closeCursor();
+     return $monId;
   }
 }

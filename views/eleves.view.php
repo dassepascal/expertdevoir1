@@ -22,29 +22,25 @@ ob_start();
   </tr>
   <?php
 
-  for ($i = 0; $i < count($eleveEcole); $i++) : ?>
-  <?php //?>
-
-
-
-
-
+  //for ($i = 0; $i < count($eleveEcole); $i++) :
+  foreach($eleves as $eleve) :
+  ?>
+<?php var_dump($eleve);?>
     <tr>
-      <td class="align-middle"><a href="<?= URL ?>eleves/e/<?= $eleves[$i]->getId_eleve() ?>"><?= $eleves[$i]->getNomEleve() ?></a></td>
-      <!-- <?php var_dump($eleveEcole[$i]['nomEleve'])?>
-      <?php var_dump($eleveEcole[$i]['nomEcole']) ?> -->
+      <td class="align-middle"><a href="<?= URL ?>eleves/e/<?= $eleve->getId_eleve() ?>"><?= $eleve->getNomEleve() ?></a></td>
 
-     <td class="align-middle "><a  href="<?= URL ?>eleves/e/<?= $eleves[$i]->getId_eleve() ?>"><?= $eleveEcole[$i]['nomEcole']?></a></td>
 
-      <td class="align-middle"><a href="<?= URL ?>eleves/m/<?= $eleves[$i]->getId_eleve(); ?>" class="btn btn-warning">Modifier</a></td>
+      <td class="align-middle "><a href="<?= URL ?>eleves/e/<?= $eleve->getId_eleve() ?>"><?= $eleve->getNomEcole() ?></a></td>
+
+      <td class="align-middle"><a href="<?= URL ?>eleves/m/<?= $eleve->getId_eleve(); ?>" class="btn btn-warning">Modifier</a></td>
       <td class="align-middle">
-        <form method="post" action="<?= URL ?>eleves/s/<?= $eleves[$i]->getId_eleve(); ?>" onSubmit="return confirm ('voulez vous vraiment supprimer cette éléve');">
+        <form method="post" action="<?= URL ?>eleves/s/<?= $eleve->getId_eleve(); ?>" onSubmit="return confirm ('voulez vous vraiment supprimer cette éléve');">
           <button class="btn btn-danger" type="submit">Supprimer</button>
         </form>
     </tr>
 
 
-  <?php endfor ?>
+  <?php endforeach ?>
 
 </table>
 

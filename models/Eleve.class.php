@@ -5,12 +5,13 @@ class Eleve
   private $id_eleve;
   private $nomEleve;
   private $ecole_id;
+  private $nomEcole;
 
 
   public static $eleves;//tableau eleves
 
 
-  public function __construct($id_eleve, $nomEleve,$ecole_id)
+  public function __construct($id_eleve, $nomEleve, $ecole_id)
   {
     $this->id_eleve = $id_eleve;
     $this->nomEleve = $nomEleve;
@@ -20,6 +21,10 @@ class Eleve
 
   }
 
+  // id, nom, ecole (nom)
+  // getId() -> id() => $eleve->id()
+  // getNom() -> nom() => $eleve->nom()
+  // getEcole -> ecole() => $eleve->ecole()
 
   public function getId_eleve()
   {
@@ -45,10 +50,13 @@ class Eleve
   {
     $this->ecole_id = $ecole_id;
   }
-  
-
-
+  public function setNomEcole($nomEcole) {
+    $this->nomEcole = $nomEcole;
   }
+  public function getNomEcole() {
+    return $this->nomEcole;
+  }
+}
 
 
 
