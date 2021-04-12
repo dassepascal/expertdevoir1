@@ -16,9 +16,11 @@ class EcolesController
     $ecoles = $this->ecoleManager->getEcoles();
     require('views/ecoles.view.php');
   }
+  /*!*********************************************/
   public function afficherEcole($id_ecole)
   {
     $ecole = $this->ecoleManager->getEcoleById($id_ecole);
+    var_dump($ecole);
     require "views/afficherEcole.view.php";
   }
   public function ajoutEcole()
