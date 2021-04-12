@@ -23,7 +23,7 @@ class EleveManager extends Model
 
   public function chargementEleves()
   {
-    $req = $this->getBdd()->prepare("SELECT E.id_eleve, E.nomEleve, E.ecole_id , T.nomEcole FROM eleve E INNER JOIN ecole T ON T.id_ecole = E.ecole_id");
+    $req = $this->getBdd()->prepare("SELECT E.id_eleve, E.nomEleve, E.ecole_id , T.nom as nomEcole FROM eleve E INNER JOIN ecole T ON T.id = E.ecole_id");
     $req->execute();
     $mesEleves = $req->fetchall(PDO::FETCH_ASSOC);
     $req->closeCursor();

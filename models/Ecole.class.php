@@ -1,37 +1,41 @@
 <?php
 class Ecole
 {
-  private $id_ecole;
-  private $nomEcole;
+  private $id;
+  private $nom;
 
 public static $ecoles;// tableau des ecoles
 
+ // id, nom, 
+  // getId() -> id() => $ecole->id()
+  // getNom() -> nom() => $ecole->nom()
 
 
-  public function __construct($id_ecole, $nomEcole)
+
+  public function __construct($id, $nom)
   {
-    $this->id_ecole = $id_ecole;
-    $this->nomEcole = $nomEcole;
+    $this->id = $id;
+    $this->nom = $nom;
     self::$ecoles[]=$this;
 
   }
 
 
-  public function getId_ecole()
+  public function getId()
   {
-    return $this->id_ecole;
+    return $this->id;
   }
-  public function setId_ecole($id_ecole)
+  public function setId($id)
   {
-    $this->id_ecole = $id_ecole;
+    $this->id = $id;
   }
 
-  public function getNomEcole()
+  public function getNom()
   {
-    return $this->nomEcole;
+    return $this->nom;
   }
-  public function setNomEcole($nomEcole)
+  public function setNom($nom)
   {
-    $this->nomEcole = $nomEcole;
+    $this->nom = $nom;
   }
 }

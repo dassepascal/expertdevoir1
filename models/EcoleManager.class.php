@@ -24,19 +24,19 @@ class EcoleManager extends Model
     $req->closeCursor();
     foreach ($mesEcoles as $ecole) { //?genere des objets de la class Ecole
 
-      $school = new Ecole($ecole['id_ecole'], $ecole['nomEcole']);
+      $school = new Ecole($ecole['id'], $ecole['nom']);
       $this->ajoutEcole($school);
     }
   }
-  public function getEcoleById($id_ecole)
+  public function getEcoleById($id)
   {
     for ($i = 0; count($this->ecoles); $i++) {
-      if ($this->ecoles[$i]->getId_ecole($id_ecole) === $id_ecole) {
+      if ($this->ecoles[$i]->getId_ecole($id) === $id) {
         return $this->ecoles[$i];
       }
     }
   }
-  public function ajoutEcoleBd($nomEcole)
+  public function ajoutEcoleBd($nom)
   {
     if (!isset($_POST['nomEcole']) || empty($_POST['nomEcole'])) {
       throw new Exception(" Vous devez entrer un nom d'école ");
@@ -45,7 +45,7 @@ class EcoleManager extends Model
       $req = "
       select count(nomEcole) from ecole where (nomEcole = :nomEcole)";
       $stmt = $this->getBdd()->prepare($req);
-      $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
+      $stmt->bindValue(":nomEcole", $nom, PDO::PARAM_STR);
       $resultat = $stmt->execute();
       $results = $stmt->fetchAll();
       foreach ($results as $result) {
@@ -55,13 +55,13 @@ class EcoleManager extends Model
           $req = "
           insert into ecole (nomEcole) values (:nomEcole)";
           $stmt = $this->getBdd()->prepare($req);
-          $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
+          $stmt->bindValue(":nomEcole", $nom, PDO::PARAM_STR);
           $resultat = $stmt->execute();
 
           $stmt->closeCursor();
 
           if ($resultat > 0) {
-            $ecole = new Ecole($this->getBdd()->lastInsertId(), $nomEcole);
+            $ecole = new Ecole($this->getBdd()->lastInsertId(), $nom);
 
             $this->ajoutEcole($ecole);
           }
@@ -70,37 +70,37 @@ class EcoleManager extends Model
     }
   }
 
-  public function suppressionEcoleBd($id_ecole)
+  public function suppressionEcoleBd($id)
   {
     $req = "Delete from ecole  where id_ecole = :idEcole";
     $stmt = $this->getbdd()->prepare($req);
-    $stmt->bindValue(":idEcole", $id_ecole, PDO::PARAM_INT);
+    $stmt->bindValue(":idEcole", $id, PDO::PARAM_INT);
     $resultat = $stmt->execute();
     $stmt->closeCursor();
 
     if ($resultat > 0) {
-      $ecole = $this->getEcoleById($id_ecole);
+      $ecole = $this->getEcoleById($id);
       unset($ecole);
     }
   }
-  public function modificationEcoleBd($id_ecole, $nomEcole)
+  public function modificationEcoleBd($id, $nom)
   {
     $req = "
     update ecole
-    set nomEcole = :nomEcole
-    where id_ecole = :id_ecole";
+    set nom = :nom
+    where id = :id";
     $stmt = $this->getBdd()->prepare($req);
-    $stmt->bindValue(":id_ecole", $id_ecole, PDO::PARAM_INT);
-    $stmt->bindValue(":nomEcole", $nomEcole, PDO::PARAM_STR);
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+    $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
     $resultat = $stmt->execute();
     $stmt->closeCursor();
 
     if ($resultat > 0) {
-      $this->getEcoleById($id_ecole)->setNomEcole($nomEcole);
+      $this->getEcoleById($id)->setNomEcole($nom);
     }
   }
   public function nbEleves(){
-    $req = $this->getBdd()->prepare("SELECT T.id_ecole FROM ecole  T INNER JOIN eleve E ON  T.id_ecole = E.ecole_id ");
+    $req = $this->getBdd()->prepare("SELECT T.id FROM ecole  T INNER JOIN eleve E ON  T.id = E.ecole_id ");
     $req->execute();
     $monId = $req->fetchAll(PDO::FETCH_ASSOC);
     $req->closeCursor();

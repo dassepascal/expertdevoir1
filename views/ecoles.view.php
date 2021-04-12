@@ -15,14 +15,14 @@ ob_start();
 
   for ($i = 0; $i < count($ecoles); $i++) : ?>
     <tr>
-      <td class="align-middle "><a  href="<?= URL ?>ecoles/h/<?= $ecoles[$i]->getId_ecole() ?>"><?= $ecoles[$i]->getNomEcole() ?></a></td>
-<!-- <?php var_dump($ecoles[$i]->getId_ecole());?>
-<?php var_dump($ecoles[$i]->getNomEcole());?> -->
+      <td class="align-middle "><a  href="<?= URL ?>ecoles/h/<?= $ecoles[$i]->getId() ?>"><?= $ecoles[$i]->getNom() ?></a></td>
+<!-- <?php var_dump($ecoles[$i]->getId());?>
+<?php var_dump($ecoles[$i]->getNom());?> -->
 
       <td class="align-middle">
-      <a href="<?= URL ?>ecoles/m/<?= $ecoles[$i]->getId_ecole(); ?>" class="btn btn-warning">Modifier</a></td>
+      <a href="<?= URL ?>ecoles/m/<?= $ecoles[$i]->getId(); ?>" class="btn btn-warning">Modifier</a></td>
       <td class="align-middle">
-        <form method="post" action="<?= URL ?>ecoles/s/<?= $ecoles[$i]->getId_ecole(); ?>" onSubmit="return confirm ('voulez vous vraiment supprimer cette ecole');">
+        <form method="post" action="<?= URL ?>ecoles/s/<?= $ecoles[$i]->getId(); ?>" onSubmit="return confirm ('voulez vous vraiment supprimer cette ecole');">
           <button class="btn btn-danger" type="submit">Supprimer</button>
         </form>
       </td>

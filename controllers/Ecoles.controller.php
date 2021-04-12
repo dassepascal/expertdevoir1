@@ -17,9 +17,9 @@ class EcolesController
     require('views/ecoles.view.php');
   }
   /*!*********************************************/
-  public function afficherEcole($id_ecole)
+  public function afficherEcole($id)
   {
-    $ecole = $this->ecoleManager->getEcoleById($id_ecole);
+    $ecole = $this->ecoleManager->getEcoleById($id);
     var_dump($ecole);
     //$studentsCount = count($this->ecoleManager->students($ecole->id()));
 
@@ -37,13 +37,13 @@ class EcolesController
     header('Location: '. URL . "ecoles");
 
   }
-  public function suppressionEcole($id_ecole){
-    $this->ecoleManager->suppressionEcoleBd($id_ecole);
+  public function suppressionEcole($id){
+    $this->ecoleManager->suppressionEcoleBd($id);
     header('Location: '. URL . "ecoles");
 
   }
-  public function modificationEcole($id_ecole){
-    $ecole = $this->ecoleManager->getEcoleById($id_ecole);
+  public function modificationEcole($id){
+    $ecole = $this->ecoleManager->getEcoleById($id);
     require "views/modifierEcole.view.php";
   }
   public function modificationEcoleValidation(){
