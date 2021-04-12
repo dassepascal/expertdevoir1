@@ -16,9 +16,9 @@ class ElevesController{
    $eleves =$this->eleveManager->getEleves();
    require('views/eleves.view.php');
  }
- public function afficherEleve($id_eleve){
-  $eleves =$this->eleveManager->getEleves();
-$eleve =$this->eleveManager->getEleveById($id_eleve);
+ public function afficherEleve($id){
+ // $eleves =$this->eleveManager->getEleves();
+$eleve =$this->eleveManager->getEleveById($id);
 require "views/afficherEleve.view.php";
 
 }
@@ -29,12 +29,12 @@ public function ajoutEleveValidation(){
   $this->eleveManager->ajoutEleveBd($_POST['nomEleve'],$_POST['nomEcole']);
   header('Location: '. URL . "eleves");
 }
-public function suppressionEleve($id_eleve){
-  $eleve = $this->eleveManager->suppressionEleveBd($id_eleve);
+public function suppressionEleve($id){
+  $eleve = $this->eleveManager->suppressionEleveBd($id);
   header('Location: '. URL . "eleves");
 }
-public function modificationEleve($id_eleve){
-  $eleve = $this->eleveManager->getEleveById($id_eleve);
+public function modificationEleve($id){
+  $eleve = $this->eleveManager->getEleveById($id);
   require "views/modificationEleve.view.php";
 }
 public function modificationEleveValidation(){

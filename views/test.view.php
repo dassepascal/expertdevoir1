@@ -1,25 +1,22 @@
 
 
-<?php
-ob_start();
-?>
-<form action="#" method="post">
-<fieldset><legend>Afficher ecole</legend>
-<label for="ecole"> Ecole :</label>
-
-<select name = 'ecole' id='ecole' onchange="submit()">
-<option value=""></option>
-<option value="1"> ecole 1</option>
-<option value="1"> ecole 2</option>
-<option value="1"> ecole 3</option>
-</select>
-</fieldset>
-</form>
-
 
 <?php
+/*---------------------------------------------------------------*/
+/*
+    Titre : Enlève les doublons dans une requete
 
-$titre = "test";
-$content = ob_get_clean();
-require_once('template.php');
+    URL   : https://phpsources.net/code_s.php?id=707
+    Date édition     : 07 Juil 2005
+    Date mise à jour : 14 Sept 2019
+    Rapport de la maj:
+    - fonctionnement du code vérifié
+*/
+/*---------------------------------------------------------------*/
+
+     $req =
+" SELECT count(*),nom_champ FROM table GROUP BY nom_champ HAVING count(*) > 1 ";
+
 ?>
+
+

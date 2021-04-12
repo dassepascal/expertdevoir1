@@ -31,7 +31,7 @@ class EcoleManager extends Model
   public function getEcoleById($id)
   {
     for ($i = 0; count($this->ecoles); $i++) {
-      if ($this->ecoles[$i]->getId_ecole($id) === $id) {
+      if ($this->ecoles[$i]->getId($id) === $id) {
         return $this->ecoles[$i];
       }
     }
@@ -43,9 +43,9 @@ class EcoleManager extends Model
     } else {
 
       $req = "
-      select count(nomEcole) from ecole where (nomEcole = :nomEcole)";
+      select count(nom) from ecole where (nom =:nom)";
       $stmt = $this->getBdd()->prepare($req);
-      $stmt->bindValue(":nomEcole", $nom, PDO::PARAM_STR);
+      $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
       $resultat = $stmt->execute();
       $results = $stmt->fetchAll();
       foreach ($results as $result) {
@@ -53,9 +53,9 @@ class EcoleManager extends Model
           throw new Exception(" l'école  existe deja");
         } else {
           $req = "
-          insert into ecole (nomEcole) values (:nomEcole)";
+          insert into ecole (nom) values (:nom)";
           $stmt = $this->getBdd()->prepare($req);
-          $stmt->bindValue(":nomEcole", $nom, PDO::PARAM_STR);
+          $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
           $resultat = $stmt->execute();
 
           $stmt->closeCursor();
@@ -72,9 +72,9 @@ class EcoleManager extends Model
 
   public function suppressionEcoleBd($id)
   {
-    $req = "Delete from ecole  where id_ecole = :idEcole";
+    $req = "Delete from ecole  where id =:id";
     $stmt = $this->getbdd()->prepare($req);
-    $stmt->bindValue(":idEcole", $id, PDO::PARAM_INT);
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
     $resultat = $stmt->execute();
     $stmt->closeCursor();
 
@@ -83,6 +83,7 @@ class EcoleManager extends Model
       unset($ecole);
     }
   }
+  
   public function modificationEcoleBd($id, $nom)
   {
     $req = "
@@ -96,7 +97,7 @@ class EcoleManager extends Model
     $stmt->closeCursor();
 
     if ($resultat > 0) {
-      $this->getEcoleById($id)->setNomEcole($nom);
+      $this->getEcoleById($id)->setNom($nom);
     }
   }
   public function nbEleves(){
