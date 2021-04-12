@@ -19,9 +19,9 @@
       <ul>
         <li><a href="<?= URL ?>accueil">Accueil</a></li>
 
-        <li><a href="<?= URL ?>ecoles" >Ecole</a></li>
-        <li><a href="<?= URL ?>eleves">Eleve</a></li>
-        <li><a href="<?= URL ?>sports">Sport</a></li>
+        <li><a href="<?= URL ?>ecoles" >Ecoles</a></li>
+        <li><a href="<?= URL ?>eleves">Eleves</a></li>
+        <li><a href="<?= URL ?>sports">Sports</a></li>
         <li><a href="<?= URL ?>pratiqueSports">Sports Pratiqués</a></li>
 
       </ul>

@@ -7,8 +7,8 @@ $eleveManager = new EleveManager;
 $eleveManager->chargementEleves();
 //$eleveManager->getNomEcoleById($ecole_id);
 $eleveEcole = $eleveManager->afficherNomEcole();
-echo '<pre>';
-print_r($eleveEcole);
+// echo '<pre>';
+// print_r($eleveEcole);
 
 ob_start();
 
@@ -22,19 +22,19 @@ ob_start();
   </tr>
   <?php
 
-  for ($i = 0; $i < count($eleves); $i++) : ?>
+  for ($i = 0; $i < count($eleveEcole); $i++) : ?>
   <?php //?>
 
-  
+
 
 
 
     <tr>
       <td class="align-middle"><a href="<?= URL ?>eleves/e/<?= $eleves[$i]->getId_eleve() ?>"><?= $eleves[$i]->getNomEleve() ?></a></td>
-      <?php var_dump($eleves[$i]->getId_eleve())?>
-      <?php var_dump($eleves[$i]->getNomEleve()) ?>
+      <!-- <?php var_dump($eleveEcole[$i]['nomEleve'])?>
+      <?php var_dump($eleveEcole[$i]['nomEcole']) ?> -->
 
-     <td class="align-middle "><a  href="<?= URL ?>eleves/e/<?= $eleves[$i]->getId_eleve() ?>"><?= $eleves[$i]->getNomEleve()?></a></td>
+     <td class="align-middle "><a  href="<?= URL ?>eleves/e/<?= $eleves[$i]->getId_eleve() ?>"><?= $eleveEcole[$i]['nomEcole']?></a></td>
 
       <td class="align-middle"><a href="<?= URL ?>eleves/m/<?= $eleves[$i]->getId_eleve(); ?>" class="btn btn-warning">Modifier</a></td>
       <td class="align-middle">
@@ -54,7 +54,7 @@ ob_start();
 
 
 <?php
-$titre = "eleve";
+$titre = "Eleves";
 $content = ob_get_clean();
 require_once('template.php');
 ?>

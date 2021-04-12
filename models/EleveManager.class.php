@@ -43,8 +43,8 @@ class EleveManager extends Model
     // echo '<pre>';
     //print_r($mesNomEcoles);
 return $mesNomEcoles;
-    var_dump($mesNomEcoles[0]['nomEleve']);
-    var_dump($mesNomEcoles[0]['nomEcole']);
+    // var_dump($mesNomEcoles[0]['nomEleve']);
+    // var_dump($mesNomEcoles[0]['nomEcole']);
   }
 
 
