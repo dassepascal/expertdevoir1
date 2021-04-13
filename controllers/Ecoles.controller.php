@@ -20,8 +20,9 @@ class EcolesController
   public function afficherEcole($id)
   {
     $ecole = $this->ecoleManager->getEcoleById($id);
-    var_dump($ecole);
-    //$studentsCount = count($this->ecoleManager->students($ecole->id()));
+
+    // $studentsCount = count($this->ecoleManager->students($ecole->id($id)));
+
 
     require "views/afficherEcole.view.php";
   }

@@ -4,6 +4,8 @@ require_once('models/EleveManager.class.php');
 require_once('controllers/Eleves.controller.php');
 $eleveManager = new EleveManager;
 $eleveManager->chargementEleves();
+
+
 ob_start();
 
 ?>

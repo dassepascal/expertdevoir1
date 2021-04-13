@@ -3,10 +3,11 @@ class Ecole
 {
   private $id;
   private $nom;
+  private $eleves;
 
 public static $ecoles;// tableau des ecoles
 
- // id, nom, 
+ // id, nom,
   // getId() -> id() => $ecole->id()
   // getNom() -> nom() => $ecole->nom()
 
@@ -37,5 +38,12 @@ public static $ecoles;// tableau des ecoles
   public function setNom($nom)
   {
     $this->nom = $nom;
+  }
+  public function getEleves(){
+   return $this ->eleves;
+  }
+  public function setEleves($eleves){
+    $this ->eleves = $eleves;
+
   }
 }

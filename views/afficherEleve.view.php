@@ -4,6 +4,7 @@ require_once('models/EleveManager.class.php');
 require_once('controllers/Eleves.controller.php');
 $eleveManager = new EleveManager;
 $eleveManager->chargementEleves();
+$nomEcole =$eleve->getNomEcole();
 
 
 
@@ -15,7 +16,7 @@ ob_start();
       </tr>
 
 <tr>
-<td class="align-middle "> affiche nom ecole</td>
+<td class="align-middle "><?=$nomEcole?></td>
 
 </tr>
 

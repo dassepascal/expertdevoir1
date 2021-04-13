@@ -36,6 +36,21 @@ class EcoleManager extends Model
       }
     }
   }
+  public function students(){
+    $req = $this->getBdd()->prepare("SELECT T.id, T.nom, E.nom as eleves FROM ecole T INNER JOIN eleve E ON T.id = E.ecole_id");
+    $req->execute();
+    $listeEcoles = $req->fetchall(PDO::FETCH_ASSOC);
+//var_dump($listeEcoles);
+    $req->closeCursor();
+    foreach ($listeEcoles as  $ecole){
+     $lesIds =($ecole['id']);
+     //var_dump($lesIds);
+     $newecole = new Ecole($ecole['id'],$ecole['nom']);
+     $newecole->setEleves($ecole['eleves']);
+
+    }
+    return $lesIds;
+  }
   public function ajoutEcoleBd($nom)
   {
     if (!isset($_POST['nomEcole']) || empty($_POST['nomEcole'])) {
@@ -108,4 +123,5 @@ class EcoleManager extends Model
     $req->closeCursor();
      return $monId;
   }
+
 }
