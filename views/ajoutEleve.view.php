@@ -4,9 +4,9 @@ require_once('controllers/Eleves.controller.php');
 require_once('models/EleveManager.class.php');
  $eleveManager = new eleveManager;
   $listeEcoles =$eleveManager->listeEcole();
-foreach ($listeEcoles as $key => $listeEcole) {
-    var_dump($key);
-}
+  $listeSports = $eleveManager->listeSports();
+  var_dump($listeSports);
+
 
 
 ob_start();
@@ -15,18 +15,27 @@ ob_start();
     <div class="form-group">
         <label for="nomEleve">Nom : </label>
         <input type="text" class="form" id="nomEleve" name="nomEleve"><br/>
+
         <label for="pays">Dans quel ecole ?</label><br />
+
         <select name="nomEcole"     id="nomEcole">
         <!-- recuperer la liste des ecoles -->
         <option value=""></option>
           <?php foreach ($listeEcoles as $key => $listeEcole):?>
 
-
-             <!-- <option value="1">ecole A</option>
-            <option value="2">ecole B</option>
-            <option value="3">ecole C</option> -->
-
              <option  value="<?=$key +1?>"><?= $listeEcole['nomEcole'] ?></option>
+
+
+             <?php endforeach?>
+        </select><br/>
+        <label for="">Quel sport voulez-vous pratiquer ?</label><br />
+
+        <select name="sport"     id="sport">
+
+        <option value=""></option>
+          <?php foreach ($listeSports as $key => $sport):?>
+
+             <option  value="<?=$key +1?>"><?= $sport['nomSport'] ?></option>
 
 
              <?php endforeach?>

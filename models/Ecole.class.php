@@ -1,9 +1,10 @@
 <?php
+//require_once('Eleve.class.php');
 class Ecole
 {
   private $id;
   private $nom;
-  private $eleves;
+  private $ecole_id;
 
 public static $ecoles;// tableau des ecoles
 
@@ -39,11 +40,11 @@ public static $ecoles;// tableau des ecoles
   {
     $this->nom = $nom;
   }
-  public function getEleves(){
-   return $this ->eleves;
+  public function getEcole_id(){
+   return $this ->ecole_id;
   }
-  public function setEleves($eleves){
-    $this ->eleves = $eleves;
+  public function setEcole_id($ecole_id){
+    $this ->ecole_id = $ecole_id;
 
   }
 }

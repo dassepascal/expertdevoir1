@@ -1,29 +1,12 @@
 <?php
-// require_once('models/Ecole.class.php');
- require_once('models/EcoleManager.class.php');
-// require_once('views/ecoles.view.php');
-//  $ecoleManager = new EcoleManager;
-//  $ecoleManager->getEcoleById($id);
-//  $test =$ecoleManager->chargementEcoles();
-//  var_dump($test);//$ecolemanager->students($id);
 
+ require_once('models/EcoleManager.class.php');
 
 $ecoleManager = new EcoleManager;
-//$ecoles = $ecoleManager->getEcoles();
-//var_dump($ecoles);
-$test = $ecoleManager->students();
-var_dump($test);
-// $liste = $ecole->getEleves();
-// var_dump($liste);
-//$test1 =$ecoleManager->getEcoleById($id);
-//var_dump($test1);
+ $listeIdEcole =$ecoleManager -> listeId($ecole->getId());
+ $nbEleves = count($listeIdEcole);
+ $id_ecole = $ecole->getId();
 
-$id_ecole = $ecole->getId();
-var_dump($id_ecole);
-$nom = $ecole->getNom();
-var_dump($nom);
-$eleves = $ecole->getEleves();
-var_dump($eleves);
 
 ob_start();
 ?>
@@ -44,7 +27,7 @@ ob_start();
 <tr>
 <td class="align-middle"><?= $id_ecole;?></td>
 
-<td class="align-middle">afficher le nombre eleve </td>
+<td class="align-middle"><?= $nbEleves?> </td>
 <td class="align-middle">afficher le nombre eleve pratique 1 sport</td>
 <td class="align-middle">afficher le nombre activite sportive?</td>
 <td class="align-middle">afficher le nombre</td>

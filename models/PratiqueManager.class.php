@@ -23,5 +23,16 @@ public function chargementPratiques(){
     $this->ajoutPratique($p);
   }
 }
+public function listeSport(){
+
+  $req = $this->getBdd()->prepare("SELECT  S.sport  FROM pratique P INNER JOIN sport S ON P.id_sport = S.id_sport GROUP BY T.nom HAVING count(*) > 1 ");
+  $req->execute();
+  $listeSport = $req->fetchall(PDO::FETCH_ASSOC);
+
+  $req->closeCursor();
+  return $listeSport;
+
+
+}
 
 }

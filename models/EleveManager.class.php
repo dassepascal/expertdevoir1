@@ -1,11 +1,7 @@
 <?php
 require_once('Model.class.php');
 require_once('Ecole.class.php');
-//require_once('EcoleManager.class.php');
-//$nomEcole = new Ecole($id_ecole,$nomEcole);
-//$nomEcole->getNomEcole();
-//$ecolemanager = new EcoleManager;
-//$ecolemanager->chargementEcoles();
+
 class EleveManager extends Model
 {
   private $eleves;
@@ -122,7 +118,7 @@ class EleveManager extends Model
   {
 
     $req = "update eleve set nom=:nom, ecole_id =:ecole_id where id=:id";
-    
+
 
     $stmt = $this->getBdd()->prepare($req);
     $stmt->bindValue(":id", $id, PDO::PARAM_INT);
@@ -137,5 +133,16 @@ class EleveManager extends Model
       $this->getEleveById($id)->setNom($nom);
       $this->getEleveById($id)->setEcole_id($ecole_id);
     }
+  }
+  public function listeSports(){
+
+    $req = $this->getBdd()->prepare("SELECT  nomSport FROM sport  ");
+    $req->execute();
+    $listeSports = $req->fetchall(PDO::FETCH_ASSOC);
+
+    $req->closeCursor();
+    return $listeSports;
+
+
   }
 }

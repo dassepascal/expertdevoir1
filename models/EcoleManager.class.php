@@ -1,11 +1,12 @@
 <?php
 require_once('Model.class.php');
 require_once('Ecole.class.php');
+
+
+
 class EcoleManager extends Model
 {
   private $ecoles;
-
-  //public function students() // return array(Eleve $student)
 
   public function ajoutEcole($ecole)
   {
@@ -32,25 +33,25 @@ class EcoleManager extends Model
   {
     for ($i = 0; count($this->ecoles); $i++) {
       if ($this->ecoles[$i]->getId($id) === $id) {
+
         return $this->ecoles[$i];
       }
     }
   }
-  public function students(){
-    $req = $this->getBdd()->prepare("SELECT T.id, T.nom, E.nom as eleves FROM ecole T INNER JOIN eleve E ON T.id = E.ecole_id");
+  public function listeId($id_ecole){
+    $req = $this->getBdd()->prepare("SELECT  E.ecole_id   FROM ecole T INNER JOIN eleve E ON T.id = E.ecole_id where E.ecole_id = $id_ecole ");
     $req->execute();
-    $listeEcoles = $req->fetchall(PDO::FETCH_ASSOC);
+    $listeIdEcole = $req->fetchall(PDO::FETCH_ASSOC);
 //var_dump($listeEcoles);
     $req->closeCursor();
-    foreach ($listeEcoles as  $ecole){
-     $lesIds =($ecole['id']);
-     //var_dump($lesIds);
-     $newecole = new Ecole($ecole['id'],$ecole['nom']);
-     $newecole->setEleves($ecole['eleves']);
 
+return $listeIdEcole;
     }
-    return $lesIds;
-  }
+
+
+
+
+
   public function ajoutEcoleBd($nom)
   {
     if (!isset($_POST['nomEcole']) || empty($_POST['nomEcole'])) {
@@ -115,13 +116,6 @@ class EcoleManager extends Model
     if ($resultat > 0) {
       $this->getEcoleById($id)->setNom($nom);
     }
-  }
-  public function nbEleves(){
-    $req = $this->getBdd()->prepare("SELECT T.id FROM ecole  T INNER JOIN eleve E ON  T.id = E.ecole_id ");
-    $req->execute();
-    $monId = $req->fetchAll(PDO::FETCH_ASSOC);
-    $req->closeCursor();
-     return $monId;
   }
 
 }

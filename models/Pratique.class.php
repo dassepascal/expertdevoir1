@@ -2,7 +2,7 @@
 
 class Pratique
 {
-
+private $id_pratique;
   private $id_eleve;
   private $id_sport;
 

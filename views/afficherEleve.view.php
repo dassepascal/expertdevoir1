@@ -5,7 +5,9 @@ require_once('controllers/Eleves.controller.php');
 $eleveManager = new EleveManager;
 $eleveManager->chargementEleves();
 $nomEcole =$eleve->getNomEcole();
-
+$listeId = $eleve->getEcole_id();
+$listeSports = $eleveManager->listeSports();
+var_dump($listeSports);
 
 
 ob_start();
@@ -21,6 +23,10 @@ ob_start();
 </tr>
 
 </table>
+<a href="">Voulez-vous pratiquer un sport? </a>
+
+
+
 
 
 <?php

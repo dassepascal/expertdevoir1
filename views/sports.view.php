@@ -17,6 +17,7 @@ ob_start();
   for($i=0 ;$i < count($sports);$i++):?>
 <tr>
 <td class="alig-middle"><a href="<?= URL ?>sports/k/<?= $sports[$i]->getId_sport();?>"><?= $sportManager->getSports()[$i]->getNomSport()?></a></td>
+
 <td class="align-middle"> <a href="<?= URL ?>sports/m/<?= $sports[$i]->getId_sport(); ?>" class="btn btn-warning">Modifier</a></td>
       <td class="align-middle">
       <form method="post" action="<?= URL ?>sports/s/<?= $sports[$i]->getId_sport(); ?>" onSubmit="return confirm ('voulez vous vraiment supprimer ce sport');">
