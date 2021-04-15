@@ -42,7 +42,7 @@ class EcoleManager extends Model
     $req = $this->getBdd()->prepare("SELECT  E.ecole_id   FROM ecole T INNER JOIN eleve E ON T.id = E.ecole_id where E.ecole_id = $id_ecole ");
     $req->execute();
     $listeIdEcole = $req->fetchall(PDO::FETCH_ASSOC);
-//var_dump($listeEcoles);
+
     $req->closeCursor();
 
 return $listeIdEcole;

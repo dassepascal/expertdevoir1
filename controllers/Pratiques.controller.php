@@ -13,7 +13,12 @@ class PratiqueController
   public function afficherPratiques(){
 
     $pratiques = $this->pratiqueManager->getPratiques();
+    //var_dump($pratiques);
     require('views/afficherPratique.view.php');
+  }
+
+  public function ajouterPratique(){
+    require "views/ajouterPratique.view.php";
   }
 
 }

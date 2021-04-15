@@ -7,7 +7,7 @@ $eleveManager->chargementEleves();
 $nomEcole =$eleve->getNomEcole();
 $listeId = $eleve->getEcole_id();
 $listeSports = $eleveManager->listeSports();
-var_dump($listeSports);
+
 
 
 ob_start();

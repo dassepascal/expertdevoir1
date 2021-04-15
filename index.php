@@ -20,8 +20,8 @@ try {
       case 'accueil':
         require "views/accueil.view.php";
         break;
-      case 'ecoles':
 
+      case 'ecoles':
         if (empty($url[1])) {
           $ecoleController->afficherEcoles();
         } else if ($url[1] === "h") {
@@ -40,6 +40,7 @@ try {
           throw new  Exception("La page n'existe pas");
         }
         break;
+
       case 'eleves':
         if (empty($url[1])) {
           $eleveController->afficherEleves();
@@ -59,6 +60,7 @@ try {
           throw new  Exception("La page n'existe pas");
         }
         break;
+
       case 'sports':
         if (empty($url[1])) {
           $sportController->afficherSports();
@@ -76,9 +78,12 @@ try {
           $sportController->suppressionSport($url[2]);
         }
         break;
+
       case 'pratiqueSports':
         if (empty($url[1])) {
           $pratiqueController->afficherPratiques();
+        }else if ($url[1] === "a"){
+          $pratiqueController->ajouterPratique();
         }
         break;
       default:
