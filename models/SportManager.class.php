@@ -1,5 +1,6 @@
 <?php
 require_once('Model.class.php');
+require_once('Sport.class.php');
 
 class SportManager extends Model{
   private $sports;
@@ -16,6 +17,7 @@ class SportManager extends Model{
     $req = $this->getBdd()->prepare("SELECT * FROM sport");
     $req->execute();
     $mesSports = $req->fetchall(PDO::FETCH_ASSOC);
+
    $req->closecursor();
 
    foreach($mesSports as $sport){
@@ -23,7 +25,7 @@ class SportManager extends Model{
      $this->ajoutSport($s);
    }
   }
-  
+
   public function getSportById($id_sport){
     for($i=0;count($this->sports);$i++){
 if($this->sports[$i]->getId_sport($id_sport) === $id_sport){

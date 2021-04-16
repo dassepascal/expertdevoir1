@@ -3,6 +3,7 @@ require_once('models/Ecole.class.php');
 require_once('models/EcoleManager.class.php');
 $ecolemanager = new EcoleManager;
 $ecolemanager->chargementEcoles();
+
 ob_start();
 
 ?>

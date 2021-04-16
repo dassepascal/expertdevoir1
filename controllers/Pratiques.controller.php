@@ -20,5 +20,8 @@ class PratiqueController
   public function ajouterPratique(){
     require "views/ajouterPratique.view.php";
   }
+  public function ajouterPratiqueValidation(){
+    $this->pratiqueManager->ajoutPratiqueBd($_POST['id_eleve'],$_POST['id_sport']);
+  }
 
 }

@@ -84,6 +84,8 @@ try {
           $pratiqueController->afficherPratiques();
         }else if ($url[1] === "a"){
           $pratiqueController->ajouterPratique();
+        }else if ($url[1] === "av"){
+          $pratiqueController->ajouterPratiqueValidation();
         }
         break;
       default:

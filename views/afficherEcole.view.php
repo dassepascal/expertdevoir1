@@ -3,6 +3,7 @@
  require_once('models/EcoleManager.class.php');
 
 $ecoleManager = new EcoleManager;
+
  $listeIdEcole =$ecoleManager -> listeId($ecole->getId());
  $nbEleves = count($listeIdEcole);
  $id_ecole = $ecole->getId();

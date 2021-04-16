@@ -5,6 +5,8 @@ class Pratique
   private $id_pratique;
   private $id_eleve;
   private $id_sport;
+  private $nomEleve;
+  private $nomSport;
 
   public static $pratiques;
 

@@ -90,6 +90,7 @@ class EleveManager extends Model
 
           if ($resultat > 0) {
             $eleve = new Eleve($this->getBdd()->lastinsertId(), $nom, $ecole_id);
+            
             $this->ajoutEleve($eleve);
           }
         }
