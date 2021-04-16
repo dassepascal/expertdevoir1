@@ -18,7 +18,7 @@ ob_start();
         <label for="NomEcole">Dans quel ecole ?</label><br />
 
         <select name="nomEcole"     id="nomEcole">
-        <!-- recuperer la liste des ecoles -->
+        
         <option value=""></option>
           <?php foreach ($listeEcoles as $key => $listeEcole):?>
 

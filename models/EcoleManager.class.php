@@ -38,15 +38,16 @@ class EcoleManager extends Model
       }
     }
   }
-  public function listeId($id_ecole){
+  public function listeId($id_ecole)
+  {
     $req = $this->getBdd()->prepare("SELECT  E.ecole_id   FROM ecole T INNER JOIN eleve E ON T.id = E.ecole_id where E.ecole_id = $id_ecole ");
     $req->execute();
     $listeIdEcole = $req->fetchall(PDO::FETCH_ASSOC);
 
     $req->closeCursor();
 
-return $listeIdEcole;
-    }
+    return $listeIdEcole;
+  }
 
 
 
@@ -117,5 +118,27 @@ return $listeIdEcole;
       $this->getEcoleById($id)->setNom($nom);
     }
   }
+  public function nbElevesPratiqueSport()
+  {
+    $req = $this->getBdd()->prepare(" SELECT P.id_pratique FROM eleve E INNER JOIN pratique P on E.id = P.id_eleve  ");
+    $req->execute();
+    $nbEPS = $req->fetchall(PDO::FETCH_ASSOC);
 
+    $req->closeCursor();
+
+    return $nbEPS;
+  }
+  public function listeActiviteSportives(){
+    $req = $this->getBdd()->prepare(" SELECT S.id_sport FROM eleve E INNER JOIN pratique P on E.id = P.id_eleve inner join sport S on P.id_sport = S.id_sport ");
+    $req->execute();
+    $listeActiviteSportives = $req->fetchall(PDO::FETCH_ASSOC);
+
+    $req->closeCursor();
+
+    return $listeActiviteSportives;
+
+
+
+
+  }
 }

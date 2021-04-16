@@ -3,17 +3,20 @@
  require_once('models/EcoleManager.class.php');
 
 $ecoleManager = new EcoleManager;
-
+$id_ecole = $ecole->getId();
  $listeIdEcole =$ecoleManager -> listeId($ecole->getId());
  $nbEleves = count($listeIdEcole);
- $id_ecole = $ecole->getId();
+ $nbEPS = count( $ecoleManager-> nbElevesPratiqueSport());
+ $nbAciviteSportives = count($ecoleManager->listeActiviteSportives());
+
+
 
 
 ob_start();
 ?>
 <table class="table">
 <tr class="table-dark">
-<th> id ecole</th>
+
   <th>Nombre  d'éléves</th>
   <th>Nombre d'eleve pratiquant au moin 1 sport</th>
   <th>nombre activite sportive</th>
@@ -26,11 +29,11 @@ ob_start();
 
 
 <tr>
-<td class="align-middle"><?= $id_ecole;?></td>
+
 
 <td class="align-middle"><?= $nbEleves?> </td>
-<td class="align-middle">afficher le nombre eleve pratique 1 sport</td>
-<td class="align-middle">afficher le nombre activite sportive?</td>
+<td class="align-middle"><?= $nbEPS ?></td>
+<td class="align-middle"><?= $nbAciviteSportives ?></td>
 <td class="align-middle">afficher le nombre</td>
 </tr>
 
