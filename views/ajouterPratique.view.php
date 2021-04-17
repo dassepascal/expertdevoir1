@@ -30,7 +30,7 @@ $eleves = $eleveManager->getEleves();
   for($i =0; $i < count($eleves); $i++) :?>
 
 
-<option  value=""><?= $eleves[$i]->getNom(); ?></option>
+<option  value="<?= $eleves[$i]->getId() ?>"><?= $eleves[$i]->getNom(); ?></option>
 
      <?php endfor?>
 </select><br>

@@ -33,29 +33,27 @@ public function chargementPratiques(){
   }
 }
 public function ajoutPratiqueBd($id_sport,$id_eleve){
-  var_dump($id_sport);
-  var_dump($id_eleve);
+
 
      $req = " insert into pratique (id_Sport,id_eleve) values (:id_sport,:id_eleve)";
 
      $stmt = $this->getBdd()->prepare($req);
-     //$stmt ->bindValue(":id_pratique", $id_pratique);
-     //$stmt->bindValue(":id_pratique", $id_pratique, PDO::PARAM_STR);
+
      $stmt->bindValue(":id_sport", $id_sport, PDO::PARAM_STR);
      $stmt->bindValue(":id_eleve", $id_eleve, PDO::PARAM_STR);
-     var_dump($id_eleve);
+
      $resultat = $stmt->execute();
-var_dump($resultat);
-  //   $stmt->closeCursor();
+      var_dump($resultat);
+     $stmt->closeCursor();
 
-  //   if ($resultat > 0) {
-  //     $p = new Pratique($this->getBdd()->lastInsertId(), $id_sport,$id_eleve);
-
-  //     $this->ajoutPratique($p);
-  //   }
-  // }
-
-}
+     if ($resultat === true) {
+       $p = new Pratique($this->getBdd()->lastInsertId(), $id_sport,$id_eleve);
+var_dump($p);
+       $this->ajoutPratique($p);
+     }
+   }
 
 }
+
+
 

@@ -1,44 +1,45 @@
 <?php
 
- require_once('models/EcoleManager.class.php');
+require_once('models/EcoleManager.class.php');
 
 $ecoleManager = new EcoleManager;
 $id_ecole = $ecole->getId();
- $listeIdEcole =$ecoleManager -> listeId($ecole->getId());
- $nbEleves = count($listeIdEcole);
- $nbEPS = count( $ecoleManager-> nbElevesPratiqueSport());
- $nbAciviteSportives = count($ecoleManager->listeActiviteSportives());
+$listeIdEcole = $ecoleManager->listeId($ecole->getId());
+$nbEleves = count($listeIdEcole);
+$nbEPS = count($ecoleManager->nbElevesPratiqueSport());
+$nbAciviteSportives = count($ecoleManager->listeActiviteSportives());
 
 
 
 
 ob_start();
 ?>
-<table class="table">
-<tr class="table-dark">
+<table border="1px solid black">
+  <tr>
+    <th>Nombre d'éléves</th>
+    <td class="align-middle"><?= $nbEleves ?> </td>
+  </tr>
+  <tr>
+    <th>Nombre d'eleve pratiquant au moin 1 sport</th>
+    <td class="align-middle"><?= $nbEPS ?></td>
+  </tr>
+  <tr>
+    <th>nombre activite sportive</th>
+    <td class="align-middle"><?= $nbAciviteSportives ?></td>
+  </tr>
 
-  <th>Nombre  d'éléves</th>
-  <th>Nombre d'eleve pratiquant au moin 1 sport</th>
-  <th>nombre activite sportive</th>
-  <th> liste activite sportive</th>
-</tr>
+</table><br>
+<table>
+  <tr>
+    <th>liste sport</th>
+  </tr>
+  <tr>
 
-
-
-
-
-
-<tr>
-
-
-<td class="align-middle"><?= $nbEleves?> </td>
-<td class="align-middle"><?= $nbEPS ?></td>
-<td class="align-middle"><?= $nbAciviteSportives ?></td>
-<td class="align-middle">afficher le nombre</td>
-</tr>
-
-
+    <td> </td>
+  </tr>
 </table>
+
+
 <?php
 $title = $ecole->getNom();
 $titre = $ecole->getNom();

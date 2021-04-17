@@ -74,7 +74,7 @@ class EcoleManager extends Model
           $stmt = $this->getBdd()->prepare($req);
           $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
           $resultat = $stmt->execute();
-
+var_dump($resultat);
           $stmt->closeCursor();
 
           if ($resultat > 0) {
@@ -137,8 +137,16 @@ class EcoleManager extends Model
 
     return $listeActiviteSportives;
 
-
-
-
   }
+public function nbEleveSport($nomSport){
+  $req = $this->getBdd()->prepare(" SELECT P.id_eleve, S.nomSport FROM ecole T INNER JOIN eleve E on T.id = E.ecole_id inner join pratique P on E.id = P.id_eleve inner join sport S on P.id_sport = S.id_sport where id_sport = $nomSport");
+  $req->execute();
+  $nbEleveSport = $req->fetchall(PDO::FETCH_ASSOC);
+
+  $req->closeCursor();
+
+  return $nbEleveSport;
+}
+
+
 }
