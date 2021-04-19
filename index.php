@@ -76,6 +76,8 @@ try {
           $sportController->modificationSportValidation();
         } else if ($url[1] === "s") {
           $sportController->suppressionSport($url[2]);
+        }else {
+          throw new  Exception("La page n'existe pas");
         }
         break;
 
@@ -84,8 +86,12 @@ try {
           $pratiqueController->afficherPratiques();
         }else if ($url[1] === "a"){
           $pratiqueController->ajouterPratique();
+        }else if ($url[1] === "p"){
+          $pratiqueController->afficherPratique($url[2]);
         }else if ($url[1] === "av"){
           $pratiqueController->ajouterPratiqueValidation();
+        }else {
+          throw new  Exception("La page n'existe pas");
         }
         break;
       default:

@@ -8,7 +8,7 @@ class Pratique
   private $nomEleve;
   private $nomSport;
 
-  public static $pratiques;
+  public static $pratiques;//tableau pratiques
 
   public function __construct($id_pratique, $id_eleve, $id_sport)
   {

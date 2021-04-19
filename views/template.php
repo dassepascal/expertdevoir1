@@ -18,7 +18,6 @@
     <nav>
       <ul>
         <li><a href="<?= URL ?>accueil">Accueil</a></li>
-
         <li><a href="<?= URL ?>ecoles" >Ecoles</a></li>
         <li><a href="<?= URL ?>eleves">Eleves</a></li>
         <li><a href="<?= URL ?>sports">Sports</a></li>

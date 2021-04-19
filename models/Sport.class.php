@@ -4,7 +4,7 @@ class Sport
   private $id_sport;
   private $nomsport;
 
-  public static $sports;//tableau sport
+  public static $sports;//tableau sports
 
 
   public function __construct($id_sport, $nomSport)

@@ -14,7 +14,7 @@ class SportsController
   {
 
     $sports = $this->sportManager->getsports();
-    var_dump($sports);
+    //var_dump($sports);
     require('views/sports.view.php');
   }
 
@@ -22,7 +22,7 @@ class SportsController
   {
 
     $sport = $this->sportManager->getSportById($id_sport);
-//var_dump($sport);
+var_dump($sport);
     require "views/afficherSport.view.php";
   }
 
