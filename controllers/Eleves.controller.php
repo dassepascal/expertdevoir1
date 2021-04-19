@@ -17,7 +17,7 @@ class ElevesController{
    require('views/eleves.view.php');
  }
  public function afficherEleve($id){
- 
+
 $eleve =$this->eleveManager->getEleveById($id);
 require "views/afficherEleve.view.php";
 
@@ -41,6 +41,9 @@ public function modificationEleveValidation(){
 
     $this->eleveManager->modificationEleveBd($_POST['identifiant'],$_POST['nomEleve'],$_POST['nomEcole']);
     header('Location: '. URL . "eleves");
+  }
+  public function ajouterSport(){
+    require "views/ajouterEleveSports.view.php";
   }
 }
 

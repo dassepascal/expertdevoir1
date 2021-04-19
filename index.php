@@ -48,7 +48,9 @@ try {
           $eleveController->afficherEleve($url[2]);
         } else if ($url[1] === "a") {
           $eleveController->ajoutEleve();
-        } else if ($url[1] === "av") {
+        }else if ($url[1] === "i") {
+          $eleveController->ajouterSport();
+         } else if ($url[1] === "av") {
           $eleveController->ajoutEleveValidation();
         } else if ($url[1] === "m") {
           $eleveController->modificationEleve($url[2]);

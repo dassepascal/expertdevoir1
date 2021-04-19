@@ -24,7 +24,16 @@ ob_start();
 </tr>
 
 </table>
-<a href="">Voulez-vous pratiquer un sport? </a>
+<form>
+  <div>
+    <!-- <input type="checkbox" id="subscribeSports" name="subscribe" value=""> -->
+    <label for="subscribeSports">Souhaitez-vous vous inscrire à un sport ?</label>
+  </div>
+  <div>
+  <a href="<?= URL ?>eleves/i/" class="btn btn-success">S'inscrire</a>
+
+  </div>
+</form>
 
 
 
