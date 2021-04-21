@@ -61,11 +61,13 @@ class EleveManager extends Model
 
   public function ajoutEleveBd($nom, $ecole_id)
   {
-//! pb champ nomEcole;
+
     if (!isset($_POST['nomEleve']) || empty($_POST['nomEleve'])) {
-
-
       throw new Exception(" Vous devez entrer un eleve");
+
+
+    }else if (!isset($_POST['ecole_id']) || empty($_POST['ecole_id'])){
+      throw new Exception(" Vous devez entrer une ecole");
     } else {
 
       $req = " select count(nom) from eleve where (nom =':nom')";
@@ -146,7 +148,7 @@ class EleveManager extends Model
 
 
   }
-  
+
   }
 
 
