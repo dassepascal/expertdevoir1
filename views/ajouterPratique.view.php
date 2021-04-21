@@ -5,9 +5,9 @@ require_once('controllers/Pratiques.controller.php');
 require_once('models/EcoleManager.class.php');
 require_once('controllers/Eleves.controller.php');
 $sportManager = new SportManager;
-var_dump($sportManager);
+
 $pratiqueManager = new PratiqueManager;
-var_dump($pratiqueManager);
+
 $pratiqueManager->chargementPratiques();
 
 $sportManager->chargementSports();

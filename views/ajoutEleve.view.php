@@ -5,7 +5,8 @@ require_once('models/EleveManager.class.php');
  $eleveManager = new eleveManager;
   $listeEcoles =$eleveManager->listeEcole();
   $listeSports = $eleveManager->listeSports();
-
+$ecoleManager = new EcoleManager;
+$ecoleManager->chargementEcoles();
 
 
 ob_start();
@@ -18,11 +19,13 @@ ob_start();
         <label for="NomEcole">Dans quel ecole ?</label><br />
 
         <select name="nomEcole"     id="nomEcole">
-        
-        <option value=""></option>
-          <?php foreach ($listeEcoles as $key => $listeEcole):?>
 
-             <option  value="<?=$key +1?>"><?= $listeEcole['nomEcole'] ?></option>
+        <option value=""></option>
+          <?php
+          $ecoles =$ecoleManager->getEcoles();
+          foreach ($ecoles as $ecole):?>
+
+             <option  value="<?=$ecole->getId();?>"><?= $ecole->getNom() ?></option>
 
 
              <?php endforeach?>

@@ -102,3 +102,13 @@ require_once('template.php');
 <?php// endfor?>
 </select> -->
 #1452 - Cannot add or update a child row: a foreign key constraint fails (`db_stat`.`pratique`, CONSTRAINT `FK_sport` FOREIGN KEY (`id_sport`) REFERENCES `sport` (`id_sport`))
+
+
+ <!-- <?php
+          $eleves =$elevesManager->getEleves();
+          foreach ($eleves as $eleve):?>
+
+             <option  value="<?=$eleve->getId();?>"><?= $eleve->getNomEcole() ?></option>
+
+
+             <?php endforeach?>

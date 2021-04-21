@@ -1,9 +1,12 @@
 <?php
 require_once('controllers/Eleves.controller.php');
 require_once('models/EleveManager.class.php');
+require_once('models/EcoleManager.class.php');
 $eleveManager = new EleveManager;
- $essai = $eleveManager->chargementEleves();
- var_dump($essai);
+ $eleveManager->chargementEleves();
+ $ecoleManager = new EcoleManager;
+ $ecoleManager->chargementEcoles();
+
 ob_start();
 ?>
 <form method="POST" action="<?= URL ?>eleves/mv">
@@ -16,10 +19,18 @@ ob_start();
 
     <label for="pays">Changer d'école ?</label><br />
         <select name="nomEcole"     id="nomEcole">
+       
+
+
         <option value=""></option>
-            <option value="1">ecole A</option>
-            <option value="2">ecole B</option>
-            <option value="3">ecole C</option>
+          <?php
+          $ecoles =$ecoleManager->getEcoles();
+          foreach ($ecoles as $ecole):?>
+
+             <option  value="<?=$ecole->getId();?>"><?= $ecole->getNom() ?></option>
+
+
+             <?php endforeach?>
         </select>
   </div>
   <input type="hidden" id="identifiant" name="identifiant" value="<?= $eleve->getId(); ?>">
