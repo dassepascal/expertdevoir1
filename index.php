@@ -48,7 +48,7 @@ try {
           $eleveController->afficherEleve($url[2]);
         } else if ($url[1] === "a") {
           $eleveController->ajoutEleve();
-        
+
          }else if ($url[1] === "av") {
           $eleveController->ajoutEleveValidation();
         } else if ($url[1] === "m") {
@@ -91,7 +91,12 @@ try {
           $pratiqueController->afficherPratique($url[2]);
         }else if ($url[1] === "av"){
           $pratiqueController->ajouterPratiqueValidation();
-        }else {
+        }else if ($url[1] === "m"){
+          $pratiqueController->ajouterPratiqueValidation();
+        }else if ($url[1] === "s"){
+          $pratiqueController->suppressionPratique($url[2]);
+        }
+        else {
           throw new  Exception("La page n'existe pas");
         }
         break;

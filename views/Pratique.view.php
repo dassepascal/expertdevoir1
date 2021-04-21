@@ -20,7 +20,7 @@ ob_start();
 <td class="align-middle">
       <a href="<?= URL ?>pratiqueSports/m/<?=$pratiques[$i]->getId_pratique();?>" class="btn btn-warning">Modifier</a></td>
       <td class="align-middle">
-        <form method="post" action="" onSubmit="return confirm ('voulez vous vraiment supprimer cette ecole');">
+        <form method="post" action="<?= URL ;?>pratiqueSports/s/<?= $pratiques[$i]->getId_pratique();?> " onSubmit="return confirm ('voulez vous vraiment supprimer cette pratique');">
           <button class="btn btn-danger" type="submit">Supprimer</button>
         </form>
       </td>

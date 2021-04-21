@@ -34,4 +34,9 @@ class PratiqueController
     $this->pratiqueManager->ajoutPratiqueBd($_POST['id_eleve'], $_POST['id_sport']);
     header('location:' . URL . "pratiqueSports");
   }
+  public function suppressionPratique($id_pratique){
+    $this->pratiqueManager->suppressionPratiqueBd($id_pratique);
+    header('location:' . URL . "pratiqueSports");
+
+  }
 }
