@@ -66,13 +66,13 @@ class EleveManager extends Model
       throw new Exception(" Vous devez entrer un eleve");
 
 
-    }else if (!isset($_POST['ecole_id']) || empty($_POST['ecole_id'])){
+    }else if (!isset($_POST['nomEcole']) || empty($_POST['nomEcole'])){
       throw new Exception(" Vous devez entrer une ecole");
     } else {
 
-      $req = " select count(nom) from eleve where (nom =':nom')";
+      $req = " select count(nom) from eleve where (nom =:nomEcole)";
       $stmt = $this->getBdd()->prepare($req);
-      $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
+      $stmt->bindValue(":nomEcole", $nom, PDO::PARAM_STR);
       $resultat = $stmt->execute();
       $results = $stmt->fetchAll();
 
