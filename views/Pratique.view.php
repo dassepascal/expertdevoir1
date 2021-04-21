@@ -18,7 +18,7 @@ ob_start();
 <td class="align-middle"><a href="<?= URL ;?>pratiqueSports/p/<?= $pratiques[$i]->getId_pratique();?> "><?= $pratiques[$i]->getNomEleve();?></a></td>
 <td class="align-middle"><?= $pratiques[$i]->getNomSport();?></a></td>
 <td class="align-middle">
-      <a href="" class="btn btn-warning">Modifier</a></td>
+      <a href="<?= URL ?>pratiqueSports/m/<?=$pratiques[$i]->getId_pratique();?>" class="btn btn-warning">Modifier</a></td>
       <td class="align-middle">
         <form method="post" action="" onSubmit="return confirm ('voulez vous vraiment supprimer cette ecole');">
           <button class="btn btn-danger" type="submit">Supprimer</button>
