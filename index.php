@@ -92,7 +92,7 @@ try {
         }else if ($url[1] === "av"){
           $pratiqueController->ajouterPratiqueValidation();
         }else if ($url[1] === "m"){
-          $pratiqueController->ajouterPratiqueValidation();
+          $pratiqueController->modificationPratique($url[2]);
         }else if ($url[1] === "s"){
           $pratiqueController->suppressionPratique($url[2]);
         }

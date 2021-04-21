@@ -39,4 +39,9 @@ class PratiqueController
     header('location:' . URL . "pratiqueSports");
 
   }
+  public function modificationPratique($id_pratique){
+    $pratique = $this->pratiqueManager->getPratiqueById($id_pratique);
+    require "views/modificationPratique.view.php";
+  }
+
 }
