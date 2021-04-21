@@ -76,4 +76,23 @@ if($resultat > 0){
 }
 
   }
+  public function modificationPratiqueBd($id_pratique,$id_eleve,$id_sport){
+    var_dump($id_pratique);
+    var_dump($id_eleve);
+    var_dump($id_sport);
+    $req = "update pratique set id_eleve =:id_eleve,id_sport =:id_sport where id_pratique =:id_pratique";
+    $stmt = $this->getBdd()->prepare($req);
+    $stmt->bindValue(":id_pratique",$id_pratique,PDO::PARAM_INT);
+    $stmt->bindValue(":id_eleve",$id_eleve,PDO::PARAM_INT);
+    $stmt->bindValue(":id_sport", $id_sport, PDO::PARAM_INT);
+    $resultat = $stmt->execute();
+    var_dump($resultat);
+
+    $stmt->closeCursor();
+
+    if ($resultat > 0) {
+      $this->getPratiqueById($id_pratique)->setId_eleve($id_eleve);
+      $this->getPratiqueById($id_pratique)->setId_sport($id_sport);
+    }
+  }
 }

@@ -43,5 +43,11 @@ class PratiqueController
     $pratique = $this->pratiqueManager->getPratiqueById($id_pratique);
     require "views/modificationPratique.view.php";
   }
+  public function modificationPratiqueValadation(){
+
+  $this->pratiqueManager->modificationPratiqueBd($_POST['identifiant'],$_POST['id_eleve'],$_POST['id_sport']);
+  header('location:' . URL . "pratiqueSports");
+
+  }
 
 }

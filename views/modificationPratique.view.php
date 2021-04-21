@@ -15,10 +15,12 @@ $eleveManager->chargementEleves();
 
 ob_start();
 ?>
-<form method="POST" action="<?= URL ?>pratiqueSports/av ">
+<form method="POST" action="<?= URL ?>pratiqueSports/mv ">
   <div class="form-group">
 <label for="nomEleve">Nom :</label>
-<input type="text" class="form" id="nomEleve" name="nomEleve" value="<?= $pratique->getNomEleve();?>"><br/>
+
+<?php var_dump($pratique->getId_eleve());?>
+<input type="text" class="form" id="nomEleve" name="id_eleve" value="<?= $pratique->getNomEleve();?>"><br/>
 <label for="nomSport">Sport actuel:</label>
 <input type="text" class="form" id="nomSport" name="nomSport" value="<?= $pratique->getNomSport();?>"><br/>
     <label for="">Quel sport voulez-vous pratiquer ?</label><br />
@@ -31,6 +33,9 @@ ob_start();
       <?php endfor ?>
     </select>
   </div>
+  <input type="hidden" name="id_eleve" value="<?= $pratique->getId_eleve();?>">
+  <input type="hidden" id="identifiant" name="identifiant" value="<?= $pratique->getId_pratique(); ?>">
+  <?php var_dump($pratique->getId_pratique());?>
   <button type="submit" class="btn btn-success">Valider</button>
 </form>
 <?php

@@ -93,7 +93,13 @@ try {
           $pratiqueController->ajouterPratiqueValidation();
         }else if ($url[1] === "m"){
           $pratiqueController->modificationPratique($url[2]);
-        }else if ($url[1] === "s"){
+        }else if ($url[1] === "mv"){
+          $pratiqueController->modificationPratiqueValadation();
+        }
+
+
+
+        else if ($url[1] === "s"){
           $pratiqueController->suppressionPratique($url[2]);
         }
         else {
