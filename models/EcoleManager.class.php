@@ -129,7 +129,7 @@ var_dump($resultat);
     return $nbEPS;
   }
   public function listeActiviteSportives(){
-    $req = $this->getBdd()->prepare(" SELECT S.id_sport FROM eleve E INNER JOIN pratique P on E.id = P.id_eleve inner join sport S on P.id_sport = S.id_sport ");
+    $req = $this->getBdd()->prepare(" SELECT S.id_sport FROM eleve E INNER JOIN pratique P on E.id = P.id_eleve inner join sport S on P.id_sport = S.id_sport GROUP BY S.id_sport HAVING count(*) > 1");
     $req->execute();
     $listeActiviteSportives = $req->fetchall(PDO::FETCH_ASSOC);
 

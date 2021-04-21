@@ -42,8 +42,11 @@ public function modificationEleveValidation(){
     $this->eleveManager->modificationEleveBd($_POST['identifiant'],$_POST['nomEleve'],$_POST['nomEcole']);
     header('Location: '. URL . "eleves");
   }
-  public function ajouterSport(){
+  public function ajouterEleveSports(){
     require "views/ajouterEleveSports.view.php";
+  }
+  public function ajouterValidationEleveSports(){
+    $this->eleveManager->ajoutEleveSportBd($_POST['id_sport']);
   }
 }
 

@@ -31,7 +31,7 @@ class PratiqueManager extends Model
     }
   }
   public function getPratiqueById($id_pratique)
-  { 
+  {
     for ($i = 0; $i < count($this->pratiques); $i++) {
 
       if ($this->pratiques[$i]->getId_pratique($id_pratique) === $id_pratique) {
