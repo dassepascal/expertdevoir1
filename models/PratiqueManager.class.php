@@ -40,23 +40,25 @@ class PratiqueManager extends Model
       }
     }
   }
-  public function ajoutPratiqueBd($id_sport, $id_eleve)
+  public function ajoutPratiqueBd($id_eleve, $id_sport)
   {
 
+var_dump($id_sport);
+var_dump($id_eleve);
 
-    $req = " insert into pratique (id_Sport,id_eleve) values (:id_sport,:id_eleve)";
+    $req = " insert into pratique (id_eleve,id_sport) values (:id_eleve,:id_sport)";
 
     $stmt = $this->getBdd()->prepare($req);
 
-    $stmt->bindValue(":id_sport", $id_sport, PDO::PARAM_STR);
     $stmt->bindValue(":id_eleve", $id_eleve, PDO::PARAM_STR);
+    $stmt->bindValue(":id_sport", $id_sport, PDO::PARAM_STR);
 
     $resultat = $stmt->execute();
     var_dump($resultat);
     $stmt->closeCursor();
 
-    if ($resultat === true) {
-      $p = new Pratique($this->getBdd()->lastInsertId(), $id_sport, $id_eleve);
+    if ($resultat > 0) {
+      $p = new Pratique($this->getBdd()->lastInsertId(), $id_eleve, $id_sport);
       var_dump($p);
       $this->ajoutPratique($p);
     }

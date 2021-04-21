@@ -146,15 +146,7 @@ class EleveManager extends Model
 
 
   }
-  // public function ajoutEleveSportBd(){
-  //   $req = "insert into pratique (id_sport) values(:nom,:id_sport)";
-
-  //   $stmt = $this->getBdd()->prepare($req);
-  //   $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
-  //   $stmt->bindValue(":ecole_id", $ecole_id, PDO::PARAM_INT);
-  //   $resultat = $stmt->execute();
-
-  //   }
+  
   }
 
 
