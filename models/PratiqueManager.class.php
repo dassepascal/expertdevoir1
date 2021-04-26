@@ -42,48 +42,64 @@ class PratiqueManager extends Model
   }
   public function ajoutPratiqueBd($id_eleve, $id_sport)
   {
+    // recuperation des variables
+    $id_sport = $_POST['id_sport'];
+    $id_eleve = $_POST['id_eleve'];
+    //verification du contenu des variables
+    if (empty($id_eleve) or empty($id_sport)) {
+      throw new Exception("Vous devez choisir un eleve et un sport");
+    } else {
 
-var_dump($id_sport);
-var_dump($id_eleve);
+      
+      $condition = 'verifier le nombre de sport pour eleve';
+      if($condition ){
+        //?
 
-    $req = " insert into pratique (id_eleve,id_sport) values (:id_eleve,:id_sport)";
+      }else{
+        //? j'effectue la requete
+// $req = " insert into pratique (id_eleve,id_sport) values (:id_eleve,:id_sport)";
 
+      // $stmt = $this->getBdd()->prepare($req);
+
+      // $stmt->bindValue(":id_eleve", $id_eleve, PDO::PARAM_STR);
+      // $stmt->bindValue(":id_sport", $id_sport, PDO::PARAM_STR);
+
+      // $resultat = $stmt->execute();
+      // var_dump($resultat);
+
+      // $stmt->closeCursor();
+
+      // if ($resultat > 0) {
+      //   $p = new Pratique($this->getBdd()->lastInsertId(), $id_eleve, $id_sport);
+      //   var_dump($p);
+      //   $this->ajoutPratique($p);
+      // }
+      }
+
+    }
+  }
+  public function suppressionPratiqueBd($id_pratique)
+  {
+    $req = "delete from pratique where id_pratique =:id_pratique ";
     $stmt = $this->getBdd()->prepare($req);
-
-    $stmt->bindValue(":id_eleve", $id_eleve, PDO::PARAM_STR);
-    $stmt->bindValue(":id_sport", $id_sport, PDO::PARAM_STR);
-
+    $stmt->bindValue(":id_pratique", $id_pratique, PDO::PARAM_INT);
     $resultat = $stmt->execute();
     var_dump($resultat);
+
     $stmt->closeCursor();
 
     if ($resultat > 0) {
-      $p = new Pratique($this->getBdd()->lastInsertId(), $id_eleve, $id_sport);
-      var_dump($p);
-      $this->ajoutPratique($p);
+      $pratique = $this->getPratiqueById($id_pratique);
+      unset($pratique);
     }
   }
-  public function suppressionPratiqueBd($id_pratique){
-    $req = "delete from pratique where id_pratique =:id_pratique ";
-$stmt=$this->getBdd()->prepare($req);
-$stmt->bindValue(":id_pratique",$id_pratique,PDO::PARAM_INT);
-$resultat = $stmt->execute();
-$stmt->closeCursor();
+  public function modificationPratiqueBd($id_pratique, $id_eleve, $id_sport)
+  {
 
-if($resultat > 0){
-  $pratique = $this->getPratiqueById($id_pratique);
-  unset($pratique);
-}
-
-  }
-  public function modificationPratiqueBd($id_pratique,$id_eleve,$id_sport){
-    var_dump($id_pratique);
-    var_dump($id_eleve);
-    var_dump($id_sport);
     $req = "update pratique set id_eleve =:id_eleve,id_sport =:id_sport where id_pratique =:id_pratique";
     $stmt = $this->getBdd()->prepare($req);
-    $stmt->bindValue(":id_pratique",$id_pratique,PDO::PARAM_INT);
-    $stmt->bindValue(":id_eleve",$id_eleve,PDO::PARAM_INT);
+    $stmt->bindValue(":id_pratique", $id_pratique, PDO::PARAM_INT);
+    $stmt->bindValue(":id_eleve", $id_eleve, PDO::PARAM_INT);
     $stmt->bindValue(":id_sport", $id_sport, PDO::PARAM_INT);
     $resultat = $stmt->execute();
     var_dump($resultat);
