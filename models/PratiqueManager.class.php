@@ -44,40 +44,78 @@ class PratiqueManager extends Model
   {
     // recuperation des variables
     $id_sport = $_POST['id_sport'];
+    var_dump($id_sport);
+
     $id_eleve = $_POST['id_eleve'];
+    var_dump($id_eleve);
     //verification du contenu des variables
     if (empty($id_eleve) or empty($id_sport)) {
       throw new Exception("Vous devez choisir un eleve et un sport");
     } else {
+      $pratiques = $this->getPratiques();
+      var_dump($pratiques);
+      $pratiques = $this->pratiques;
+      for ($i = 0; $i < count($pratiques); $i++) {
+        var_dump(count($pratiques));
+        //$id_sport = $pratiques[$i]->getId_sport();
+        $listeId_eleves[] = $pratiques[$i]->getId_eleve();
+        echo '<pre>';
+        print_r($listeId_eleves);
+        var_dump($listeId_eleves); //? tableau des id eleve
+        die();
 
-      
-      $condition = 'verifier le nombre de sport pour eleve';
-      if($condition ){
-        //?
 
-      }else{
-        //? j'effectue la requete
-// $req = " insert into pratique (id_eleve,id_sport) values (:id_eleve,:id_sport)";
-
-      // $stmt = $this->getBdd()->prepare($req);
-
-      // $stmt->bindValue(":id_eleve", $id_eleve, PDO::PARAM_STR);
-      // $stmt->bindValue(":id_sport", $id_sport, PDO::PARAM_STR);
-
-      // $resultat = $stmt->execute();
-      // var_dump($resultat);
-
-      // $stmt->closeCursor();
-
-      // if ($resultat > 0) {
-      //   $p = new Pratique($this->getBdd()->lastInsertId(), $id_eleve, $id_sport);
-      //   var_dump($p);
-      //   $this->ajoutPratique($p);
-      // }
+        for ($i; $i < count($listeId_eleves); $i++)
+          if ($id_eleve !== $listeId_eleves[$i]) {
+            echo 'pas eleve';
+            die();
+          }
       }
-
     }
+
+    // else{
+    //   var_dump('#2');
+    //   $pratiques = $this->pratiques;
+    //   for ($i; $i < count($pratiques); $i++) {
+    //     var_dump('#3');
+    //     $id_sportbd = $pratiques[$i]->getId_sport();
+    //     var_dump($id_sportbd);
+    //   }
+    //   die();
+    // }
+
+
+
+
+    // $condition = 'verifier le nombre de sport pour eleve';
+    // if ($condition) {
+    //   var_dump('condition');
+    //   //?
+
+    // } else {
+    //   var_dump('req');
+    //   //? j'effectue la requete
+    // $req = " insert into pratique (id_eleve,id_sport) values (:id_eleve,:id_sport)";
+
+    // $stmt = $this->getBdd()->prepare($req);
+
+    // $stmt->bindValue(":id_eleve", $id_eleve, PDO::PARAM_STR);
+    // $stmt->bindValue(":id_sport", $id_sport, PDO::PARAM_STR);
+
+    // $resultat = $stmt->execute();
+    // var_dump($resultat);
+
+    // $stmt->closeCursor();
+
+    // if ($resultat > 0) {
+    //   $p = new Pratique($this->getBdd()->lastInsertId(), $id_eleve, $id_sport);
+    //   var_dump($p);
+    //   $this->ajoutPratique($p);
+    // }
   }
+
+
+
   public function suppressionPratiqueBd($id_pratique)
   {
     $req = "delete from pratique where id_pratique =:id_pratique ";
