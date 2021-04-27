@@ -4,7 +4,7 @@ require_once('models/PratiqueManager.class.php');
 $pratiqueManager = new PratiqueManager;
 
 
-
+while (@ob_end_flush());
 ob_start();
 ?>
 <table class="table">
