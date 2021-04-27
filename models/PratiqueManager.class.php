@@ -51,68 +51,72 @@ class PratiqueManager extends Model
     //verification du contenu des variables
     if (empty($id_eleve) or empty($id_sport)) {
       throw new Exception("Vous devez choisir un eleve et un sport");
-    } else {
-      $pratiques = $this->getPratiques();
-      var_dump($pratiques);
-      $pratiques = $this->pratiques;
-      for ($i = 0; $i < count($pratiques); $i++) {
-        var_dump(count($pratiques));
-        //$id_sport = $pratiques[$i]->getId_sport();
-        $listeId_eleves[] = $pratiques[$i]->getId_eleve();
-        echo '<pre>';
-        print_r($listeId_eleves);
-        var_dump($listeId_eleves); //? tableau des id eleve
-        die();
+    } else { // verification du contenu des variables
+      if (isset($id_eleve)) { // verification $id_eleve
+        $req = "select (id_sport) from pratique where(id_eleve=$id_eleve)";
+        $stmt = $this->getBdd()->prepare($req);
+        $resultat = $stmt->execute();
+        var_dump($resultat);
+        $results = $stmt->fetchAll();
+        var_dump($results);
+      }
+      for ($i = 0; $i < count($results); $i++) {
+        var_dump(count($results));
+        echo (count($results) > 3) ? 'true' : 'false';
+        echo ' <br/>';
+        //   //! sorti du for
+
+        //!verifier si le sport existe dans la base
+
+      }
+      if ((count($results) > 3) === true) {
+        echo 'true';
+      } else {
+        echo 'false';
+        echo 'id_sport existe deja?'; //! id recherche 18
+        var_dump($id_sport);
+        //liste des sport de l'eleve
+        $pratiques = $this->getPratiques();
+        var_dump($pratiques);
+
+        for ($i = 0; $i < count($pratiques); $i++) {
+          $pratiques[$i]->getId_eleve();
+          var_dump($pratiques[$i]->getId_eleve());
+          //! probleme d'egalite n'est teste
+          if ($id_eleve === ($pratiques[$i]->getId_eleve())) {
+            var_dump($id_eleve);
+            $array[] = ($pratiques[$i]->getId_sport());
+            var_dump($array); //! 2 valeurs
+            var_dump($id_sport);
+            $verif = in_array($id_sport, $array);
+            var_dump($verif); //! reponse si true le sport est dans le tableau
+
+            echo $pratiques[$i]->getId_sport();
+            echo '<br/>';
+          } //else
+          // execute la requete
+          // $req = "insert into pratique (id_eleve,id_sport) values(:id_eleve,:id_sport)";
+          // $stmt = $this->getBdd()->prepare($req);
+          // $stmt->bindValue(":id_eleve", $id_eleve, PDO::PARAM_INT);
+          // $stmt->bindValue(":id_sport", $id_sport, PDO::PARAM_INT);
+          // $resultat = $stmt->execute();
+          // var_dump($resultat);
+          // $stmt->closeCursor();
+          // if ($resultat > 0) {
+          //   $p = new Eleve($this->getBdd()->lastinsertId(), $id_eleve, $id_sport);
+          //   var_dump($p);
+          //   $this->ajoutPratique($p);
+          //   die();
+          // }
 
 
-        for ($i; $i < count($listeId_eleves); $i++)
-          if ($id_eleve !== $listeId_eleves[$i]) {
-            echo 'pas eleve';
-            die();
-          }
+
+        }
       }
     }
-
-    // else{
-    //   var_dump('#2');
-    //   $pratiques = $this->pratiques;
-    //   for ($i; $i < count($pratiques); $i++) {
-    //     var_dump('#3');
-    //     $id_sportbd = $pratiques[$i]->getId_sport();
-    //     var_dump($id_sportbd);
-    //   }
-    //   die();
-    // }
-
-
-
-
-    // $condition = 'verifier le nombre de sport pour eleve';
-    // if ($condition) {
-    //   var_dump('condition');
-    //   //?
-
-    // } else {
-    //   var_dump('req');
-    //   //? j'effectue la requete
-    // $req = " insert into pratique (id_eleve,id_sport) values (:id_eleve,:id_sport)";
-
-    // $stmt = $this->getBdd()->prepare($req);
-
-    // $stmt->bindValue(":id_eleve", $id_eleve, PDO::PARAM_STR);
-    // $stmt->bindValue(":id_sport", $id_sport, PDO::PARAM_STR);
-
-    // $resultat = $stmt->execute();
-    // var_dump($resultat);
-
-    // $stmt->closeCursor();
-
-    // if ($resultat > 0) {
-    //   $p = new Pratique($this->getBdd()->lastInsertId(), $id_eleve, $id_sport);
-    //   var_dump($p);
-    //   $this->ajoutPratique($p);
-    // }
   }
+
+
 
 
 
