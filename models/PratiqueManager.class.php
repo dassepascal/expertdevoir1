@@ -71,35 +71,52 @@ class PratiqueManager extends Model
       // verification $id_eleve < 3
       if (isset($id_eleve) || isset($id_sport)) {
         $id_sport = $_POST['id_sport'];
-        var_dump($id_sport);
+        // var_dump($id_sport);
 
         $id_eleve = $_POST['id_eleve'];
-        var_dump($id_eleve);
+        // var_dump($id_eleve);
 
         $validationEleve =  $this->nbSportEleve($id_eleve);
-        var_dump($validationEleve);//return $result[0]de la fonction nbSportEleve
+        //  var_dump($validationEleve); //return $result[0]de la fonction nbSportEleve
 
-        var_dump($validationEleve ? 'true' : 'false');
+        //  var_dump($validationEleve ? 'true' : 'false');
+        /* 2 cas: si true
 
-        if ($validationEleve <= 3 ) {
-          var_dump('#1');
-          //echo 'je peux enregistrer le nombre d'eleve est inferieur à 3';
-          // maintenant est ce que le sport existe deja?
-          $listeIdSportEleve = $this->listeIdSportEleve($id_eleve);
-          var_dump($listeIdSportEleve);
-          die();
-        }else{
-          die();
-          $this->enregistrerPratique($id_eleve,$id_sport);
-          //dans le cas ou $valdation est false cad
-          //throw new Exception("Error Processing Request", 1);
+        cas false nouveau eleve
+        */
 
+
+        if (isset($validationEleve) && $validationEleve == true) {
+          //  var_dump($validationEleve);
+          //  var_dump('#1');
+          //die();
+
+
+          $listes = $this->listeIdSportEleve($id_eleve);
+          // var_dump($listes);
+          $verif = in_array($id_sport, $listes);
+          // var_dump($verif);
+          // var_dump($verif ? 'true' : 'false');
+
+          if ($verif !== true) {
+            //var_dump('#5');
+
+            $this->enregistrerPratique($id_eleve, $id_sport);
+          } else {
+            //   var_dump('#6');
+            throw new Exception("le sport est deja enregistre");
+          }
+        } else { // cas validation  false
+          //var_dump('#7');
+
+          $this->enregistrerPratique($id_eleve, $id_sport);
         }
-        // var_dump($validationEleve);
-
       }
     }
   }
+
+
+
   public function enregistrerPratique($id_eleve, $id_sport)
   {
     $req = "insert into pratique (id_eleve,id_sport) values(:id_eleve,:id_sport)";
@@ -143,7 +160,7 @@ class PratiqueManager extends Model
     $stmt->bindValue(":id_eleve", $id_eleve, PDO::PARAM_INT);
     $stmt->bindValue(":id_sport", $id_sport, PDO::PARAM_INT);
     $resultat = $stmt->execute();
-    var_dump($resultat);
+    //var_dump($resultat);
 
     $stmt->closeCursor();
 
@@ -160,41 +177,41 @@ class PratiqueManager extends Model
     $req = "select count(id_eleve) from pratique where(id_eleve=$id_eleve)";
     $stmt = $this->getBdd()->prepare($req);
     $resultat = $stmt->execute();
-    var_dump($resultat);
+    //var_dump($resultat);
     $results = $stmt->fetchAll();
-    var_dump($results);
+    // var_dump($results);
     foreach ($results as $result) {
+      //   var_dump($result[0]); //0
+
       if ($result[0] >= 3) {
-        var_dump($result[0]);
+        // var_dump($result[0]);
 
         throw new Exception(" deja 3 inscriptions");
-         } else {
-           return $result[0];
-         }
+      } else {
+        return $result[0];
       }
     }
+  }
 
 
 
   public function listeIdSportEleve($id_eleve)
   {
-    var_dump($id_eleve);
-    // if(isset($id_elve) || !empty($id_eleve)||isset($id_sport)||!empty($id_sport)){
-    //   var_dump($id_eleve);
-    //$id_eleve = 140;
-    $req = "select id_sport from pratique where id_eleve = $id_eleve";
-    var_dump($id_eleve);
-    $stmt = $this->getBdd()->prepare($req);
-    $stmt->bindValue(":id_eleve", $id_eleve, PDO::PARAM_STR);
-    $resultat = $stmt->execute();
-    var_dump($resultat);
-    $results = $stmt->fetchAll();
-
-
-
-    foreach ($results as $result) {
-      //var_dump($result['id_sport']);
-      $listeIdSportEleve[] = ($result['id_sport']);
+    //var_dump($id_eleve);
+    if (isset($id_elve) || !empty($id_eleve) || isset($id_sport) || !empty($id_sport)) {
+      // var_dump($id_eleve);
+      //$id_eleve = 140;
+      $req = "select id_sport from pratique where id_eleve = $id_eleve";
+      // var_dump($id_eleve);
+      $stmt = $this->getBdd()->prepare($req);
+      $stmt->bindValue(":id_eleve", $id_eleve, PDO::PARAM_STR);
+      $resultat = $stmt->execute();
+      // var_dump($resultat);
+      $results = $stmt->fetchAll();
+      //var_dump($results);
+      for ($i = 0; $i < count($results); $i++) {
+        $listeIdSportEleve[] = (($results[$i]['id_sport']));
+      }
       return $listeIdSportEleve;
     }
   }
