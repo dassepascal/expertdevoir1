@@ -32,7 +32,8 @@ class PratiqueController
   public function ajouterPratiqueValidation()
   {
     $this->pratiqueManager->ajoutPratiqueBd($_POST['id_eleve'], $_POST['id_sport']);
-    header('location:' . URL . "pratiqueSports");
+   // die();
+    header('location:' . URL . "pratiqueSports",false);
   }
   public function suppressionPratique($id_pratique){
     $this->pratiqueManager->suppressionPratiqueBd($id_pratique);
