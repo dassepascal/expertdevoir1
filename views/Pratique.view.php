@@ -13,6 +13,7 @@ ob_start();
 <th>sport</th>
 <th colspan="2">Action</th>
 </tr>
+<?php if(isset($pratiques)):?>
 <?php for($i =0;$i < count($pratiques);$i++) :?>
 <tr>
 <td class="align-middle"><a href="<?= URL ;?>pratiqueSports/p/<?= $pratiques[$i]->getId_pratique();?> "><?= $pratiques[$i]->getNomEleve();?></a></td>
@@ -26,6 +27,7 @@ ob_start();
       </td>
 </tr>
 <?php endfor;?>
+<?php endif?>
 </table>
 <a href="<?= URL ?>pratiqueSports/a/" class="btn btn-success">Ajouter</a>
 <?php

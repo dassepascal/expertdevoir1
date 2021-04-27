@@ -15,6 +15,7 @@ ob_start();
     <th></th>
     <th colspan="2">Action</th>
   </tr>
+  <?php if($isset($sports)):?>
   <?php
 $sports =$sportManager->getSports();
   for($i=0 ;$i < count($sports);$i++):?>
@@ -30,6 +31,7 @@ $sports =$sportManager->getSports();
 </tr>
 
 <?php endfor ?>
+<?php endif ?>
 </table>
 
 <a href="<?= URL ?>sports/a/" class="btn btn-success">Ajouter</a>

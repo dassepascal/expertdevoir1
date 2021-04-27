@@ -12,9 +12,9 @@ ob_start();
     <th>Nom de l'école</th>
     <th colspan="2">Action</th>
   </tr>
-  <?php
 
-  for ($i = 0; $i < count($ecoles); $i++) : ?>
+<?php if(isset($ecoles)):?>
+  <?php  for ($i = 0; $i < count($ecoles); $i++) : ?>
     <tr>
       <td class="align-middle "><a  href="<?= URL ?>ecoles/h/<?= $ecoles[$i]->getId() ?>"><?= $ecoles[$i]->getNom() ?></a></td>
 
@@ -30,6 +30,7 @@ ob_start();
     </tr>
 
   <?php endfor ?>
+  <?php endif;?>
   </table>
 
 <a href="<?= URL ?>ecoles/a/" class="btn btn-success">Ajouter</a>
