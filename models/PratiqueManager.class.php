@@ -79,7 +79,7 @@ class PratiqueManager extends Model
         $validationEleve =  $this->nbSportEleve($id_eleve);
         // var_dump($validationEleve);
         var_dump($validationEleve ? 'true' : 'false');
-        if ($validationEleve <= 3) {
+        if ($validationEleve < 3) {
           //echo 'je peux enregistrer le nombre d'eleve est inferieur à 3';
         }
         // var_dump($validationEleve);
@@ -88,25 +88,21 @@ class PratiqueManager extends Model
         //tableau de id_sport pour id_eleve
         var_dump($listeIdSportEleve); //! resultat null parce que id_eleve n'est pas dans la base
 
-        if ($listeIdSportEleve !== null) //! cas ou ou eleve deja enregistre
-        {
-          $id_sport = $_POST['id_sport'];
-          $verif = in_array($id_sport, $listeIdSportEleve);
-          //var_dump($verif);// true = le sport est ds la liste false je peux enregistrer
+        //if ($listeIdSportEleve === null) //! cas ou ou eleve deja enregistre
+        // {
+        $id_sport = $_POST['id_sport'];
+        $verif = in_array($id_sport, $listeIdSportEleve);
+        //var_dump($verif);// true = le sport est ds la liste false je peux enregistrer
 
-          if (($validationEleve < 3) && $verif === false) {
-            var_dump(($validationEleve <= 3) ? 'true' : 'false');
-            $this->enregistrerPratique($id_eleve, $id_sport);
-            var_dump($this->enregistrerPratique($id_eleve, $id_sport));
-            // var_dump($verif? 'true':'false');
-
-          } else {
-            throw new Exception("vous etes deja inscrit ");
-          }
-        } else {
-          var_dump('valeur null');
+        if (($validationEleve < 3) && $verif === false)
+         {
+          var_dump(($validationEleve <= 3) ? 'true' : 'false');
           $this->enregistrerPratique($id_eleve, $id_sport);
+          var_dump($this->enregistrerPratique($id_eleve, $id_sport));
+          // var_dump($verif? 'true':'false');
 
+        } else {
+          throw new Exception("vous etes deja inscrit ");
         }
       }
     }
