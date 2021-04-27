@@ -77,33 +77,23 @@ class PratiqueManager extends Model
         var_dump($id_eleve);
 
         $validationEleve =  $this->nbSportEleve($id_eleve);
-        // var_dump($validationEleve);
+        var_dump($validationEleve);//return $result[0]de la fonction nbSportEleve
+
         var_dump($validationEleve ? 'true' : 'false');
-        if ($validationEleve < 3) {
+
+        if ($validationEleve === true) {
           //echo 'je peux enregistrer le nombre d'eleve est inferieur à 3';
+          // maintenant est ce que le sport existe deja?
+          $listeIdSportEleve = $this->listeIdSportEleve($id_eleve);
+          var_dump($listeIdSportEleve);
+          die();
+        }else{
+          //dans le cas ou $valdation est false cad
+          throw new Exception("Error Processing Request", 1);
+          
         }
         // var_dump($validationEleve);
 
-        $listeIdSportEleve = $this->listeIdSportEleve($id_eleve);
-        //tableau de id_sport pour id_eleve
-        var_dump($listeIdSportEleve); //! resultat null parce que id_eleve n'est pas dans la base
-
-        //if ($listeIdSportEleve === null) //! cas ou ou eleve deja enregistre
-        // {
-        $id_sport = $_POST['id_sport'];
-        $verif = in_array($id_sport, $listeIdSportEleve);
-        //var_dump($verif);// true = le sport est ds la liste false je peux enregistrer
-
-        if (($validationEleve < 3) && $verif === false)
-         {
-          var_dump(($validationEleve <= 3) ? 'true' : 'false');
-          $this->enregistrerPratique($id_eleve, $id_sport);
-          var_dump($this->enregistrerPratique($id_eleve, $id_sport));
-          // var_dump($verif? 'true':'false');
-
-        } else {
-          throw new Exception("vous etes deja inscrit ");
-        }
       }
     }
   }
@@ -171,15 +161,18 @@ class PratiqueManager extends Model
     $results = $stmt->fetchAll();
     var_dump($results);
     foreach ($results as $result) {
-      if ($result[0] > 3) {
+      if ($result[0] >= 3) {
         var_dump($result[0]);
 
         throw new Exception(" deja 3 inscriptions");
-      } else {
-        return $result[0];
+         } else {
+           return $result[0];
+         }
       }
     }
-  }
+
+
+
   public function listeIdSportEleve($id_eleve)
   {
     var_dump($id_eleve);

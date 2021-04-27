@@ -13,7 +13,9 @@ ob_start();
 <th>sport</th>
 <th colspan="2">Action</th>
 </tr>
-<?php for($i =0;$i < count($pratiques);$i++) :?>
+
+
+<?php  for($i =0;$i < count($pratiques);$i++) :?>
 <tr>
 <td class="align-middle"><a href="<?= URL ;?>pratiqueSports/p/<?= $pratiques[$i]->getId_pratique();?> "><?= $pratiques[$i]->getNomEleve();?></a></td>
 <td class="align-middle"><?= $pratiques[$i]->getNomSport();?></a></td>
