@@ -81,16 +81,19 @@ class PratiqueManager extends Model
 
         var_dump($validationEleve ? 'true' : 'false');
 
-        if ($validationEleve === true) {
+        if ($validationEleve <= 3 ) {
+          var_dump('#1');
           //echo 'je peux enregistrer le nombre d'eleve est inferieur à 3';
           // maintenant est ce que le sport existe deja?
           $listeIdSportEleve = $this->listeIdSportEleve($id_eleve);
           var_dump($listeIdSportEleve);
           die();
         }else{
+          die();
+          $this->enregistrerPratique($id_eleve,$id_sport);
           //dans le cas ou $valdation est false cad
-          throw new Exception("Error Processing Request", 1);
-          
+          //throw new Exception("Error Processing Request", 1);
+
         }
         // var_dump($validationEleve);
 

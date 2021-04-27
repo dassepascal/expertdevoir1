@@ -17,6 +17,7 @@ ob_start();
     <th>Nom de l'école</th>
     <th colspan="2">Action</th>
   </tr>
+  <?php if (isset($eleves)):?>
   <?php  foreach($eleves as $eleve) :?>
     <tr>
       <td class="align-middle"><a href="<?= URL ?>eleves/e/<?= $eleve->getId() ?>"><?= $eleve->getNom() ?></a></td>
@@ -28,6 +29,7 @@ ob_start();
         </form>
     </tr>
   <?php endforeach ?>
+  <?php endif ?>
 </table>
 <a href="<?= URL ?>eleves/a/" class="btn btn-success">Ajouter</a>
 <?php
