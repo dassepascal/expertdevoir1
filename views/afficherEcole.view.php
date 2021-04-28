@@ -5,38 +5,24 @@ require_once('models/EcoleManager.class.php');
 $ecoleManager = new EcoleManager;
 $ecoleManager->chargementEcoles();
 $ecoleManager->getEcoles();
-$sportManager = new SportManager;
-$sportManager->chargementSports();
-$sports =$sportManager->getSports();
-
-
-
-
+$activites = $ecoleManager->activites($ecole->getId());
 $id_ecole = $ecole->getId();
-
 
 $listeIdEcole = $ecoleManager->listeId($ecole->getId());
 $nbEleves = count($listeIdEcole);
 $nbEPS = count($ecoleManager->nbElevesPratiqueSport());
-//var_dump($nbEPS);
+
 $nbAciviteSportives = count($ecoleManager->listeActiviteSportives());
 
-$test =count($ecoleManager->nbEleveUnSport($ecole->getId()));
-var_dump(($test));
-//var_dump($nbEleveUnSport);
-//var_dump($ecoleManager->nbEleveUnSport($id));
-
-//var_dump($nb);
-//$nbEleveUnSport = ($ecoleManager->nbEleveUnSport($ecole->getId()));
-//var_dump($nbEleveUnSports);
-
+$test = count($ecoleManager->nbEleveUnSport($ecole->getId()));
 
 $ecoleManager->listeEleves();
-//var_dump($ecoleManager->listeEleves($ecole));
-$ecoleManager->chargementEcoles();
- $ecoleManager->getEcoles();
-// var_dump($ecoleManager->getEcoles());
 
+$ecoleManager->getEcoles();
+
+$sportManager = new SportManager;
+$sportManager->chargementSports();
+$sports = $sportManager->getSports();
 
 
 
@@ -57,20 +43,22 @@ ob_start();
   </tr>
 
 </table><br>
-<table border= "1px solid black">
+<table border="1px solid black">
   <tr>
-    <th>liste sport</th>
+    <th>liste des sports</th>
+    <th> nombre d'eleves</th>
   </tr>
-
+  <?php if (isset($activites)):?>
   <?php
-  $sports =$sportManager->getSports();
-   foreach ($sports as $sport):?>
-  <tr>
+  foreach ($activites as $activite) : ?>
 
-    <td><?= $sport->getnomSport() ?>  </td>
+    <tr>
 
-  </tr>
-<?php endforeach ?>
+      <td><?= $activite['nomSport'] ?> </td>
+      <td><?= $activite['nbEleves'] ?></td>
+    </tr>
+  <?php endforeach ?>
+  <?php endif ?>
 </table>
 
 
