@@ -5,6 +5,7 @@ class Ecole
   private $id;
   private $nom;
   private $ecole_id;
+  private $idEleve;
 
 public static $ecoles;// tableau des ecoles
 
@@ -46,5 +47,11 @@ public static $ecoles;// tableau des ecoles
   public function setEcole_id($ecole_id){
     $this ->ecole_id = $ecole_id;
 
+  }
+  public function getIdEleve(){
+    return $this->idEleve;
+  }
+  public function setIdEleve($idEleve){
+    $this->idEleve=$idEleve;
   }
 }
