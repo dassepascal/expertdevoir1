@@ -39,15 +39,18 @@ class EcoleManager extends Model
       }
     }
   }
-  public function listeId($id_ecole)
+  public function nbEleves($id_ecole)
   {
-    $req = $this->getBdd()->prepare("SELECT  E.ecole_id   FROM ecole T INNER JOIN eleve E ON T.id = E.ecole_id where E.ecole_id = $id_ecole ");
+    $req = $this->getBdd()->prepare("SELECT  count(E.ecole_id) as nbEleves   FROM ecole T INNER JOIN eleve E ON T.id = E.ecole_id where E.ecole_id = $id_ecole ");
     $req->execute();
-    $listeIdEcole = $req->fetchall(PDO::FETCH_ASSOC);
-//var_dump( $listeIdEcole);
+    $nbEleves = $req->fetchall(PDO::FETCH_ASSOC);
+    //var_dump( $listeIdEcole);
+    foreach ($nbEleves as $nbEleve) {
+      $nbEleve = ($nbEleve['nbEleves']);
+    }
     $req->closeCursor();
 
-    return $listeIdEcole;
+    return $nbEleve;
   }
 
 
@@ -119,26 +122,26 @@ class EcoleManager extends Model
       $this->getEcoleById($id)->setNom($nom);
     }
   }
-  public function nbEleveUnSport($id_ecole){
-$req=$this->getBdd()->prepare( "select  E.id as idEleve  , S.id_sport  from ecole T inner join eleve E on T.id= E.ecole_id inner join pratique P on E.id = P.id_eleve inner join sport S on P.id_sport = S.id_sport where T.id = $id_ecole group by E.id ");
+  public function nbEleveUnSport($id_ecole)
+  {
+    $req = $this->getBdd()->prepare("select  E.id as idEleve  , S.id_sport  from ecole T inner join eleve E on T.id= E.ecole_id inner join pratique P on E.id = P.id_eleve inner join sport S on P.id_sport = S.id_sport where T.id = $id_ecole group by E.id ");
 
-$req->execute();
-$nbEleveUnSports = $req->fetchAll();
-
-
-foreach ($nbEleveUnSports as $nbEleveSport) {
- // var_dump(count($nbEleveSport[0]));
-}
-
-$req->closeCursor();
+    $req->execute();
+    $nbEleveUnSports = $req->fetchAll();
 
 
-return $nbEleveUnSports;
+    foreach ($nbEleveUnSports as $nbEleveSport) {
+      // var_dump(count($nbEleveSport[0]));
+    }
 
+    $req->closeCursor();
+
+
+    return $nbEleveUnSports;
   }
-  public function listeEleves(){
-    $ecoles =$this->ecoles;
-
+  public function listeEleves()
+  {
+    $ecoles = $this->ecoles;
   }
 
 
@@ -152,27 +155,28 @@ return $nbEleveUnSports;
 
     return $nbEPS;
   }
-  public function listeActiviteSportives(){
-    $req = $this->getBdd()->prepare(" SELECT E.id, S.id_sport FROM eleve E INNER JOIN pratique P on E.id = P.id_eleve inner join sport S on P.id_sport = S.id_sport GROUP BY S.id_sport ");
+  public function listeActiviteSportives($id_ecole)
+  {
+    $req = $this->getBdd()->prepare(" SELECT E.id, S.id_sport FROM ecole T inner join eleve E on T.id = E.ecole_id INNER JOIN pratique P on E.id = P.id_eleve inner join sport S on P.id_sport = S.id_sport where T.id =$id_ecole GROUP BY S.id_sport ");
     $req->execute();
-     $listeActiviteSportives = $req->fetchall(PDO::FETCH_ASSOC);
+    $listeActiviteSportives = $req->fetchall(PDO::FETCH_ASSOC);
+    $nbsports =count($listeActiviteSportives);
+
 
     $req->closeCursor();
 
-    return $listeActiviteSportives;
-
+    return $nbsports;
   }
-  public function activites($id_ecole){
-    $req= $this->getBdd()->prepare("select S.nomSport, count( S.id_sport) as nbEleves from ecole T inner join  eleve E on  T.id = E.ecole_id  inner join pratique P on E.id = P.id_eleve inner join sport S on P.id_sport = S.id_sport where  T.id = $id_ecole group by S.id_sport");
+  public function activites($id_ecole)
+  {
+    $req = $this->getBdd()->prepare("select count( S.id_sport) as nbEleves, S.nomSport  from ecole T inner join  eleve E on  T.id = E.ecole_id  inner join pratique P on E.id = P.id_eleve inner join sport S on P.id_sport = S.id_sport where  T.id = $id_ecole group by S.id_sport order by S.id_sport asc");
     $req->execute();
 
-$activites = $req->fetchAll(PDO::FETCH_ASSOC);
-//var_dump($activites);
-$req->closeCursor();
-return $activites;
 
+    $activites = $req->fetchAll(PDO::FETCH_ASSOC);
+
+
+    $req->closeCursor();
+    return $activites;
   }
-
-
-
 }

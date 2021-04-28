@@ -6,19 +6,18 @@ $ecoleManager = new EcoleManager;
 $ecoleManager->chargementEcoles();
 $ecoleManager->getEcoles();
 $activites = $ecoleManager->activites($ecole->getId());
-$id_ecole = $ecole->getId();
+$nbEleves = $ecoleManager->nbEleves($ecole->getId());
 
-$listeIdEcole = $ecoleManager->listeId($ecole->getId());
-$nbEleves = count($listeIdEcole);
+
 $nbEPS = count($ecoleManager->nbElevesPratiqueSport());
 
-$nbAciviteSportives = count($ecoleManager->listeActiviteSportives());
+$nbSports = ($ecoleManager->listeActiviteSportives($ecole->getId()));
 
 $test = count($ecoleManager->nbEleveUnSport($ecole->getId()));
 
-$ecoleManager->listeEleves();
 
-$ecoleManager->getEcoles();
+
+
 
 $sportManager = new SportManager;
 $sportManager->chargementSports();
@@ -39,7 +38,7 @@ ob_start();
   </tr>
   <tr>
     <th>nombre activite sportive</th>
-    <td class="align-middle"><?= $nbAciviteSportives ?></td>
+    <td class="align-middle"><?= $nbSports ?></td>
   </tr>
 
 </table><br>
@@ -54,7 +53,7 @@ ob_start();
 
     <tr>
 
-      <td><?= $activite['nomSport'] ?> </td>
+      <td><?=  $activite['nomSport'] ?> </td>
       <td><?= $activite['nbEleves'] ?></td>
     </tr>
   <?php endforeach ?>
