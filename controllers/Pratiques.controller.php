@@ -29,12 +29,18 @@ class PratiqueController
   {
     require "views/ajouterPratique.view.php";
   }
+
   public function ajouterPratiqueValidation()
   {
     $this->pratiqueManager->ajoutPratiqueBd($_POST['id_eleve'], $_POST['id_sport']);
+    $_SESSION['alert'] = [
+      "type" => "success",
+      "msg" => "Ajout Réalisé"
+    ];
    // die();
     header('location:' . URL . "pratiqueSports",false);
   }
+
   public function suppressionPratique($id_pratique){
     $this->pratiqueManager->suppressionPratiqueBd($id_pratique);
     header('location:' . URL . "pratiqueSports");
