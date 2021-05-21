@@ -48,7 +48,6 @@ class PratiqueManager extends Model
     if (empty($id_eleve) or empty($id_sport)) {
       $id_sport = $_POST['id_sport'];
       $id_eleve = $_POST['id_eleve'];
-      
 
       $validationEleve =  $this->nbSportEleve($id_eleve, $id_sport);
       // var_dump($validationEleve);
@@ -97,11 +96,11 @@ class PratiqueManager extends Model
           // var_dump($verif ? 'true' : 'false');
 
           if ($verif !== true) {
-            //var_dump('#5');
+            var_dump('#5');
 
             $this->enregistrerPratique($id_eleve, $id_sport);
           } else {
-            //   var_dump('#6');
+               var_dump('#6');
             throw new Exception("le sport est deja enregistre");
           }
         } else { // cas validation  false
@@ -127,7 +126,7 @@ class PratiqueManager extends Model
     if ($resultat > 0) {
       $p = new Eleve($this->getBdd()->lastinsertId(), $id_eleve, $id_sport);
       //  var_dump($p);
-
+      var_dump('exit enregistrementPratiqueBd ');
       $this->ajoutPratique($p);
     }
   }
@@ -210,6 +209,7 @@ class PratiqueManager extends Model
       for ($i = 0; $i < count($results); $i++) {
         $listeIdSportEleve[] = (($results[$i]['id_sport']));
       }
+      var_dump('resultat listeIdSport');
       return $listeIdSportEleve;
     }
   }
