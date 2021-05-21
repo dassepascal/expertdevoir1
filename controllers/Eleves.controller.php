@@ -27,10 +27,18 @@ public function ajoutEleve(){
 }
 public function ajoutEleveValidation(){
   $this->eleveManager->ajoutEleveBd($_POST['nomEleve'],$_POST['nomEcole']);
+  $_SESSION['alert'] = [
+    "type" => "success",
+    "msg" => "Ajout Réalisé"
+  ];
   header('Location: '. URL . "eleves");
 }
 public function suppressionEleve($id){
   $eleve = $this->eleveManager->suppressionEleveBd($id);
+  $_SESSION['alert'] = [
+    "type" => "success",
+    "msg" => "Suppression Réalisée"
+  ];
   header('Location: '. URL . "eleves");
 }
 public function modificationEleve($id){
@@ -40,9 +48,13 @@ public function modificationEleve($id){
 public function modificationEleveValidation(){
 
     $this->eleveManager->modificationEleveBd($_POST['identifiant'],$_POST['nomEleve'],$_POST['nomEcole']);
+    $_SESSION['alert'] = [
+      "type" => "success",
+      "msg" => "Modification Réalisée"
+    ];
     header('Location: '. URL . "eleves");
   }
- 
+
 
 }
 

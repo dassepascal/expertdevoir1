@@ -33,11 +33,19 @@ var_dump($sport);
   public function ajouterSportValidation()
   {
     $this->sportManager->ajoutSportBd($_POST['nomSport']);
+    $_SESSION['alert'] = [
+      "type" => "success",
+      "msg" => "Ajout Réalisé"
+    ];
     header('Location: ' . URL . "sports");
   }
   public function suppressionSport($id_sport)
   {
     $this->sportManager->suppressionSportBd($id_sport);
+    $_SESSION['alert'] = [
+      "type" => "success",
+      "msg" => "Suppression Réalisée"
+    ];
     header('Location: ' . URL . "sports");
   }
   public function modificationSport($id_sport)
@@ -49,7 +57,10 @@ var_dump($sport);
   public function modificationSportValidation()
   {
     $this->sportManager->modificationSportBd($_POST['identifiant'], $_POST['nomSport']);
-
+    $_SESSION['alert'] = [
+      "type" => "success",
+      "msg" => "Modification Réalisée"
+    ];
     header('Location: ' . URL . "sports");
   }
 }
