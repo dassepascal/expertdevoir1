@@ -113,5 +113,6 @@ try {
     }
   }
 } catch (Exception $e) {
-  echo $e->getMessage();
+  $msg= $e->getMessage();
+  require "views/error.view.php";
 }
