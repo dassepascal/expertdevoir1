@@ -31,12 +31,19 @@ class EcolesController
   public function ajoutEcoleValidation()
   {
     $this->ecoleManager->ajoutEcoleBd($_POST['nomEcole']);
-
+    $_SESSION['alert'] = [
+      "type" => "success",
+      "msg" => "Ajout Réalisé"
+    ];
     header('Location: '. URL . "ecoles");
 
   }
   public function suppressionEcole($id){
     $this->ecoleManager->suppressionEcoleBd($id);
+    $_SESSION['alert'] = [
+      "type" => "success",
+      "msg" => "Suppression Réalisée"
+    ];
     header('Location: '. URL . "ecoles");
 
   }
@@ -46,6 +53,10 @@ class EcolesController
   }
   public function modificationEcoleValidation(){
     $this->ecoleManager->modificationEcoleBd($_POST['identifiant'],$_POST['nomEcole']);
+    $_SESSION['alert'] = [
+      "type" => "success",
+      "msg" => "Modification Réalisée"
+    ];
     header('Location: '. URL . "ecoles");
   }
 }
