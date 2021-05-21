@@ -75,7 +75,10 @@ header {
 
 .align-middle {
   vertical-align: top; }
-
+table .center{
+  margin: 10px auto;
+  background-color: aquamarine;
+}
 .table {
   width: 100%;
   margin: 20px auto; }
@@ -98,6 +101,7 @@ table th {
 
 .btn {
   padding: 5px;
+  margin-top: 10px;
   border-radius: 25px; }
 
 .btn-warning {
@@ -106,27 +110,27 @@ table th {
 
 .btn-danger {
   background-color: red;
-  color: #fff; }
+  color: #fff;
+  cursor: pointer;
+}
 
 .btn-success {
-  background-color: rgb(58, 199, 81);
+  background-color: rgb(58, 199, 100);
   color: #fff;
   text-align: center;
   text-decoration: none;
-  display: block; }
+  display: block;
+margin-top: 10px;
+}
 
 .align-middle {
   text-align: center; }
 
-.choix1{
-  background-color: aquamarine;
-  height:200px;
-}
-.choix2{
-  background-color: goldenrod;
-  height:200px;
-}
-.choix3{
-  background-color: hotpink;
-  height:200px;
+.alert{
+  border: 1px solid black;
+  text-align: center;
+  background-color:rgb(101, 194, 117) ;
+  padding: 10px;
+  color: #fff;
+  font-size: 24px;
 }

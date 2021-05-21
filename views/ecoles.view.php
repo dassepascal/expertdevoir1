@@ -7,12 +7,20 @@ $ecolemanager->chargementEcoles();
 ob_start();
 
 ?>
+<?php
+if (!empty($_SESSION['alert'])) : ?>
+  <div class="alert alert-<?= $_SESSION['alert']['type'] ?>" role="alert">
+    <?= $_SESSION['alert']['msg'] ?></div>
+<?php
+  unset($_SESSION['alert']);
+endif;
+?>
 <table class="table">
   <tr class="table-dark">
     <th>Nom de l'école</th>
     <th colspan="2">Action</th>
   </tr>
-  
+
 
 <?php if(isset($ecoles)):?>
   <?php  for ($i = 0; $i < count($ecoles); $i++) : ?>

@@ -19,6 +19,14 @@ $eleveManager->chargementEleves();
 
 ob_start();
 ?>
+<?php
+if (!empty($_SESSION['alert'])) : ?>
+  <div class="alert alert-<?= $_SESSION['alert']['type'] ?>" role="alert">
+    <?= $_SESSION['alert']['msg'] ?></div>
+<?php
+  unset($_SESSION['alert']);
+endif;
+?>
 <form method="POST" action="<?= URL ?>pratiqueSports/av ">
 <div class="form-group">
 <label for="id_eleve">Nom : </label>

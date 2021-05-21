@@ -43,6 +43,10 @@ class PratiqueController
 
   public function suppressionPratique($id_pratique){
     $this->pratiqueManager->suppressionPratiqueBd($id_pratique);
+    $_SESSION['alert'] = [
+      "type" => "success",
+      "msg" => "Suppression Réalisée"
+    ];
     header('location:' . URL . "pratiqueSports");
 
   }
@@ -53,6 +57,10 @@ class PratiqueController
   public function modificationPratiqueValadation(){
 
   $this->pratiqueManager->modificationPratiqueBd($_POST['identifiant'],$_POST['id_eleve'],$_POST['id_sport']);
+  $_SESSION['alert'] = [
+    "type" => "success",
+    "msg" => "Modification Réalisé"
+  ];
   header('location:' . URL . "pratiqueSports");
 
   }

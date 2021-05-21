@@ -1,5 +1,9 @@
 <?php
 ob_start();
+
+
+
+
 ?>
 <h2> Sports </h2>
 <p><?= $pratique->getNomSport();?> </p>

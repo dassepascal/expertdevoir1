@@ -48,20 +48,7 @@ class PratiqueManager extends Model
     if (empty($id_eleve) or empty($id_sport)) {
       $id_sport = $_POST['id_sport'];
       $id_eleve = $_POST['id_eleve'];
-
       $validationEleve =  $this->nbSportEleve($id_eleve, $id_sport);
-      // var_dump($validationEleve);
-      var_dump($validationEleve ? 'true' : 'false');
-      if ($validationEleve <= 3) {
-        //echo 'je peux enregistrer';
-      }
-      // var_dump($validationEleve);
-
-      $listeIdSportEleve = $this->listeIdSportEleve($id_eleve);
-      //tableau de id_sport pour id_eleve
-      // var_dump($listeIdSportEleve);
-      // $verif = in_array($id_sport, $listeIdSportEleve);
-      //var_dump($verif);// true = le sport est ds la liste false je peux enregistrer
 
       throw new Exception("Vous devez choisir un eleve et un sport");
     } else { // verification du contenu des variables
@@ -92,7 +79,7 @@ class PratiqueManager extends Model
           $listes = $this->listeIdSportEleve($id_eleve);
           // var_dump($listes);
           $verif = in_array($id_sport, $listes);
-          // var_dump($verif);
+           var_dump($verif);
           // var_dump($verif ? 'true' : 'false');
 
           if ($verif !== true) {
@@ -100,6 +87,7 @@ class PratiqueManager extends Model
 
             $this->enregistrerPratique($id_eleve, $id_sport);
           } else {
+           // exit();
                var_dump('#6');
             throw new Exception("le sport est deja enregistre");
           }
@@ -128,6 +116,7 @@ class PratiqueManager extends Model
       //  var_dump($p);
       var_dump('exit enregistrementPratiqueBd ');
       $this->ajoutPratique($p);
+      var_dump('#12');
     }
   }
 
