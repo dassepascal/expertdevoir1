@@ -47,10 +47,8 @@ class PratiqueManager extends Model
     //verification du contenu des variables
     if (empty($id_eleve) or empty($id_sport)) {
       $id_sport = $_POST['id_sport'];
-      var_dump($id_sport);
-
       $id_eleve = $_POST['id_eleve'];
-      var_dump($id_eleve);
+      
 
       $validationEleve =  $this->nbSportEleve($id_eleve, $id_sport);
       // var_dump($validationEleve);
